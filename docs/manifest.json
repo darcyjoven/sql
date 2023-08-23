@@ -1,0 +1,15 @@
+{
+  "name": "一篇文章学会SQL",
+  "short_name": "一篇文章学会SQL",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "512x512"
+    }
+  ]
+}

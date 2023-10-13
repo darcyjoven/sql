@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="SQL 结构化查询语言#DDL 数据定义#建表（必须掌握，简单）#修改表（必须掌握，简单）#删除表（必须掌握，简单）#主键（一般掌握，中等）#索引 （一般掌握，中等）#外键 （了解，中等）#DML 数据操作#新增 （必须掌握，简单）#修改 （必须掌握，简单）#删除 （必须掌握，简单）#SELECT 查询#查询结果&ndash;字段 （必须掌握，简单）#查询来源&ndash;表 （必须掌握，简单）#查询条件&ndash;判断语句 （必须掌握，中等）#查询排序&ndash;ORDER BY （必须掌握，简单）#多表查询 （必须掌握，中等）#聚合 （必须掌握，中等）#嵌套 （一般掌握，简单）#常用函数 （一般掌握，中等）#建立视图 （必须掌握，中等）#修改视图 （必须掌握，中等）#删除视图 （必须掌握，中等）#">
+<meta name="description" content="SQL 结构化查询语言#DDL 数据定义#建表（必须掌握，简单）#修改表（必须掌握，简单）#删除表（必须掌握，简单）#主键（一般掌握，中等）#索引（一般掌握，中等）#外键（了解，中等）#DML 数据操作#新增 （必须掌握，简单）#修改 （必须掌握，简单）#删除 （必须掌握，简单）#SELECT 查询#查询结果&ndash;字段 （必须掌握，简单）#查询来源&ndash;表 （必须掌握，简单）#查询条件&ndash;判断语句 （必须掌握，中等）#查询排序&ndash;ORDER BY （必须掌握，简单）#多表查询 （必须掌握，中等）#聚合 （必须掌握，中等）#嵌套 （一般掌握，简单）#常用函数 （一般掌握，中等）#建立视图 （必须掌握，中等）#修改视图 （必须掌握，中等）#删除视图 （必须掌握，中等）#">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="SQL--结构化查询语言" />
 <meta property="og:description" content="" />
@@ -15,7 +15,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.f2df09dbb72465deafe3510d067f33c661066ba43b0d722dd33df6da7e097aea.js" integrity="sha256-8t8J27ckZd6v41ENBn8zxmEGa6Q7DXIt0z322n4Jeuo=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.389cc99fb2a0a8fd7a7cfcdf43ad9f123ae776b5c1a257f6b9973458e9ae45a7.js" integrity="sha256-OJzJn7KgqP16fPzfQ62fEjrndrXBolf2uZc0WOmuRac=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/index.xml" title="一篇文章学会SQL" />
@@ -285,8 +285,8 @@ https://github.com/alex-shpak/hugo-book
             <li><a href="#修改表必须掌握简单firstddl修改表"><a href="./first/DDL/#%E4%BF%AE%E6%94%B9%E8%A1%A8">修改表（必须掌握，简单）</a></a></li>
             <li><a href="#删除表必须掌握简单firstddl删除表"><a href="./first/DDL/#%E5%88%A0%E9%99%A4%E8%A1%A8">删除表（必须掌握，简单）</a></a></li>
             <li><a href="#主键一般掌握中等firstddl外键"><a href="./first/DDL/#%E5%A4%96%E9%94%AE">主键（一般掌握，中等）</a></a></li>
-            <li><a href="#索引--一般掌握中等">索引  （一般掌握，中等）</a></li>
-            <li><a href="#外键--了解中等">外键  （了解，中等）</a></li>
+            <li><a href="#索引一般掌握中等firstddl索引"><a href="./first/DDL/#%E7%B4%A2%E5%BC%95">索引（一般掌握，中等）</a></a></li>
+            <li><a href="#外键了解中等firstddl外键"><a href="./first/DDL/#%E5%A4%96%E9%94%AE">外键（了解，中等）</a></a></li>
           </ul>
         </li>
         <li><a href="#dml-数据操作">DML 数据操作</a>
@@ -353,13 +353,15 @@ https://github.com/alex-shpak/hugo-book
   <a href="/docs/SQL/first/DDL/#%e5%a4%96%e9%94%ae">主键（一般掌握，中等）</a>
   <a class="anchor" href="#%e4%b8%bb%e9%94%ae%e4%b8%80%e8%88%ac%e6%8e%8c%e6%8f%a1%e4%b8%ad%e7%ad%89firstddl%e5%a4%96%e9%94%ae">#</a>
 </h3>
-<h3 id="索引--一般掌握中等">
-  索引  （一般掌握，中等）
-  <a class="anchor" href="#%e7%b4%a2%e5%bc%95--%e4%b8%80%e8%88%ac%e6%8e%8c%e6%8f%a1%e4%b8%ad%e7%ad%89">#</a>
+<h3 id="索引一般掌握中等firstddl索引">
+  
+  <a href="/docs/SQL/first/DDL/#%e7%b4%a2%e5%bc%95">索引（一般掌握，中等）</a>
+  <a class="anchor" href="#%e7%b4%a2%e5%bc%95%e4%b8%80%e8%88%ac%e6%8e%8c%e6%8f%a1%e4%b8%ad%e7%ad%89firstddl%e7%b4%a2%e5%bc%95">#</a>
 </h3>
-<h3 id="外键--了解中等">
-  外键  （了解，中等）
-  <a class="anchor" href="#%e5%a4%96%e9%94%ae--%e4%ba%86%e8%a7%a3%e4%b8%ad%e7%ad%89">#</a>
+<h3 id="外键了解中等firstddl外键">
+  
+  <a href="/docs/SQL/first/DDL/#%e5%a4%96%e9%94%ae">外键（了解，中等）</a>
+  <a class="anchor" href="#%e5%a4%96%e9%94%ae%e4%ba%86%e8%a7%a3%e4%b8%ad%e7%ad%89firstddl%e5%a4%96%e9%94%ae">#</a>
 </h3>
 <h2 id="dml-数据操作">
   DML 数据操作
@@ -434,9 +436,9 @@ https://github.com/alex-shpak/hugo-book
   <div class="flex flex-wrap justify-between">
 
 
-  <div><a class="flex align-center" href="https://github.com/darcyjoven/sql/commit/1adf26a6600506ef9586464dbd6d59df08041fe8" title='最后修改者 darcy | 2023年8月23日' target="_blank" rel="noopener">
+  <div><a class="flex align-center" href="https://github.com/darcyjoven/sql/commit/6be42e27cdb274b9a00359f686a5edbe3002b560" title='最后修改者 darcy | 2023年10月13日' target="_blank" rel="noopener">
       <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
-      <span>2023年8月23日</span>
+      <span>2023年10月13日</span>
     </a>
   </div>
 
@@ -487,8 +489,8 @@ https://github.com/alex-shpak/hugo-book
             <li><a href="#修改表必须掌握简单firstddl修改表"><a href="./first/DDL/#%E4%BF%AE%E6%94%B9%E8%A1%A8">修改表（必须掌握，简单）</a></a></li>
             <li><a href="#删除表必须掌握简单firstddl删除表"><a href="./first/DDL/#%E5%88%A0%E9%99%A4%E8%A1%A8">删除表（必须掌握，简单）</a></a></li>
             <li><a href="#主键一般掌握中等firstddl外键"><a href="./first/DDL/#%E5%A4%96%E9%94%AE">主键（一般掌握，中等）</a></a></li>
-            <li><a href="#索引--一般掌握中等">索引  （一般掌握，中等）</a></li>
-            <li><a href="#外键--了解中等">外键  （了解，中等）</a></li>
+            <li><a href="#索引一般掌握中等firstddl索引"><a href="./first/DDL/#%E7%B4%A2%E5%BC%95">索引（一般掌握，中等）</a></a></li>
+            <li><a href="#外键了解中等firstddl外键"><a href="./first/DDL/#%E5%A4%96%E9%94%AE">外键（了解，中等）</a></a></li>
           </ul>
         </li>
         <li><a href="#dml-数据操作">DML 数据操作</a>

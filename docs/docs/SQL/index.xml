@@ -6,18 +6,13 @@
     <description>Recent content in SQL--结构化查询语言 on 一篇文章学会SQL</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://sql.darcyjoven.com/docs/SQL/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>一篇文章学完SQL</title>
-      <link>https://sql.darcyjoven.com/docs/SQL/all-in-one/</link>
-      <pubDate>Thu, 20 Jul 2023 09:59:33 +0800</pubDate>
+      <title>SQL--结构化查询语言</title>
+      <link>https://sql.darcyjoven.com/docs/SQL/hidden/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://sql.darcyjoven.com/docs/SQL/all-in-one/</guid>
-      <description>一篇文章学完 SQL#前言 &amp;ndash; 教务处系统#紧急！！！清华小学现急需一个教务处管理系统，否则学生将毕业不了。
-现在有一个 oracle 数据库系统，请协助清华小学开发一个教务处管理系统。
-如果成功你将被清华小学保送清华大学！！！
-第一天 人员管理#所有人都可以去食堂吃饭，都可以打水，进校园门。
-我们为能进入学校的所有人建立一个表，表中有以下字段：
- 姓名 性别 出生日期 联系方式  我们在执行以下 SQL：
-CREATE TABLE people(  name VARCHAR2(40),  sex number(1),  birthday DATE,  contact number(11) ); COMMENT ON TABLE people IS &amp;#39;人员信息表&amp;#39;; COMMENT ON COLUMN people.name IS &amp;#39;姓名&amp;#39;; COMMENT ON COLUMN people.sex IS &amp;#39;性别，1.男 2.女&amp;#39;; COMMENT ON COLUMN people.birthday IS &amp;#39;出生日期&amp;#39;; COMMENT ON COLUMN people.</description>
+      <guid>https://sql.darcyjoven.com/docs/SQL/hidden/</guid>
+      <description>DDL 数据定义语句# CREATE TABLE ** 需掌握程度 *** ALTER TABLE ** 需掌握程度 *** DROP TABLE * 需掌握程度 ** CREATE INDEX *** 需掌握程度 ** DROP INDEX * 需掌握程度 **  DML 数据操纵语句#  SELECT 难度 ***** 需掌握程度 ****
+ 基本语法 cloumn unique/distinct where and、or、not limit order by rownum 聚合 group by min、max count、avg、sum having like (*、？) in、between 子查询（查询嵌套） exists case 别名 join  inner join left/right (outer) join full (outer) join   union (all) insert into select    UPDATE 难度 ** 需掌握程度 ****</description>
     </item>
     
   </channel>

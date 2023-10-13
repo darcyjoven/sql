@@ -3,22 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://sql.darcyjoven.com/docs/SQL/</loc>
-    <lastmod>2023-08-07T13:55:55+08:00</lastmod>
+    <lastmod>2023-08-23T15:34:21+08:00</lastmod>
   </url><url>
-    <loc>https://sql.darcyjoven.com/docs/SQL/all-in-one/</loc>
-    <lastmod>2023-08-07T13:55:55+08:00</lastmod>
+    <loc>https://sql.darcyjoven.com/docs/SQL/first/</loc>
   </url><url>
-    <loc>https://sql.darcyjoven.com/docs/SQL/attach/teachers-people/</loc>
-    <lastmod>2023-08-07T13:55:55+08:00</lastmod>
+    <loc>https://sql.darcyjoven.com/docs/SQL/hidden/</loc>
   </url><url>
-    <loc>https://sql.darcyjoven.com/docs/SQL/attach/ins-classess/</loc>
-    <lastmod>2023-08-07T13:55:55+08:00</lastmod>
+    <loc>https://sql.darcyjoven.com/docs/SQL/practise/</loc>
   </url><url>
-    <loc>https://sql.darcyjoven.com/docs/SQL/attach/</loc>
-    <lastmod>2023-08-07T13:55:55+08:00</lastmod>
+    <loc>https://sql.darcyjoven.com/docs/SQL/first/DDL/</loc>
+  </url><url>
+    <loc>https://sql.darcyjoven.com/docs/SQL/first/DML/</loc>
+  </url><url>
+    <loc>https://sql.darcyjoven.com/docs/SQL/first/SELECT/</loc>
   </url><url>
     <loc>https://sql.darcyjoven.com/categories/</loc>
-    <lastmod>2023-08-07T13:55:55+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -31,7 +30,7 @@
                 />
   </url><url>
     <loc>https://sql.darcyjoven.com/docs/</loc>
-    <lastmod>2023-08-07T13:55:55+08:00</lastmod>
+    <lastmod>2023-08-23T15:34:21+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -43,14 +42,7 @@
                 href="https://sql.darcyjoven.com/docs/"
                 />
   </url><url>
-    <loc>https://sql.darcyjoven.com/tags/SQL/</loc>
-    <lastmod>2023-08-07T13:55:55+08:00</lastmod>
-  </url><url>
-    <loc>https://sql.darcyjoven.com/categories/SQL/</loc>
-    <lastmod>2023-08-07T13:55:55+08:00</lastmod>
-  </url><url>
     <loc>https://sql.darcyjoven.com/tags/</loc>
-    <lastmod>2023-08-07T13:55:55+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -63,7 +55,7 @@
                 />
   </url><url>
     <loc>https://sql.darcyjoven.com/</loc>
-    <lastmod>2023-08-07T13:55:55+08:00</lastmod>
+    <lastmod>2023-08-23T15:34:21+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DDL&ndash;数据定义语言# 数据通过表存在数据库中 不区分大小写 表中规定每列的数据名称和数据类型 表结构影响后续数据的存储和检索  ORACLE 数据库结构# 库 TOPPROD 不能库之间只能通过网络通信 用户 FOREWIN 可以直接访问 表 TABLE 存储的基本单元 行 row 每个数据的最小表达方式  建立表#create student(  name varchar2(100),  age number(5),  score number(4,2),  birthday date ) 以上代码运行后创建了一个名称 student 的表，其中
+ studnet 表名，在有同一个用户中，不能重名，需要满足标识符要求 name 列名，在同一个表中，不能重名，需要满足标识符要求 varchar2(100) 数据类型  oracle 数据类型# date 日期 number() 数字类型 number(5) 为 5 位的小数 number(5,2) 位 5 位，有 2 位小数 blob/clob 二进制大数据 varchar2(100) 长度为 100 的字符串 timestamp 时间戳 （精确到 10 位的秒）  修改表#已有表的修改，请注意已有资料的情况">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="DDL--数据定义言" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sql.darcyjoven.com/docs/SQL/first/DDL/" />
+
+<title>DDL--数据定义言 | 一篇文章学会SQL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/zh.search.min.f2df09dbb72465deafe3510d067f33c661066ba43b0d722dd33df6da7e097aea.js" integrity="sha256-8t8J27ckZd6v41ENBn8zxmEGa6Q7DXIt0z322n4Jeuo=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/first/DDL/index.xml" title="一篇文章学会SQL" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>一篇文章学会SQL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+  
+
+
+
+  
+    
+  
+
+
+
+<ul class="book-languages">
+  <li>
+    <input type="checkbox" id="languages" class="toggle" />
+    <label for="languages" class="flex justify-between">
+      <a role="button" class="flex align-center">
+        <img src="/svg/translate.svg" class="book-icon" alt="Languages" />
+        简体中文
+      </a>
+    </label>
+
+    <ul>
+      
+      <li>
+        <a href="https://sql.darcyjoven.com/en/">
+          English
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/SQL/" class="">SQL--结构化查询语言</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>SQL--结构化查询语言</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/DDL/" class="active">DDL--数据定义言</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>DML--数据操作语言</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9c4de171815630f1e7bf7d0b1c01b68e" class="toggle"  />
+    <label for="section-9c4de171815630f1e7bf7d0b1c01b68e" class="flex justify-between">
+      <a role="button" class="">查询语句详解</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>练习</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://github.com/darcyjoven/sql"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/"  target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>DDL--数据定义言</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#ddl--数据定义语言">DDL&ndash;数据定义语言</a>
+      <ul>
+        <li><a href="#oracle-数据库结构">ORACLE 数据库结构</a></li>
+        <li><a href="#建立表">建立表</a>
+          <ul>
+            <li><a href="#oracle-数据类型">oracle 数据类型</a></li>
+            <li><a href="#修改表">修改表</a></li>
+          </ul>
+        </li>
+        <li><a href="#删除表">删除表</a></li>
+        <li><a href="#主键">主键</a>
+          <ul>
+            <li><a href="#创建表时创建主键">创建表时创建主键</a></li>
+            <li><a href="#创建表后创建主键">创建表后创建主键</a></li>
+          </ul>
+        </li>
+        <li><a href="#索引">索引</a>
+          <ul>
+            <li><a href="#创建索引">创建索引</a></li>
+            <li><a href="#删除索引">删除索引</a></li>
+            <li><a href="#重建索引">重建索引</a></li>
+          </ul>
+        </li>
+        <li><a href="#外键">外键</a>
+          <ul>
+            <li><a href="#创建">创建</a></li>
+            <li><a href="#删除">删除</a></li>
+            <li><a href="#重建">重建</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="ddl--数据定义语言">
+  DDL&ndash;数据定义语言
+  <a class="anchor" href="#ddl--%e6%95%b0%e6%8d%ae%e5%ae%9a%e4%b9%89%e8%af%ad%e8%a8%80">#</a>
+</h1>
+<ul>
+<li>数据通过表存在数据库中</li>
+<li>不区分大小写</li>
+<li>表中规定每列的数据名称和数据类型</li>
+<li>表结构影响后续数据的存储和检索</li>
+</ul>
+<h2 id="oracle-数据库结构">
+  ORACLE 数据库结构
+  <a class="anchor" href="#oracle-%e6%95%b0%e6%8d%ae%e5%ba%93%e7%bb%93%e6%9e%84">#</a>
+</h2>
+<ul>
+<li>库 TOPPROD 不能库之间只能通过网络通信</li>
+<li>用户 FOREWIN 可以直接访问</li>
+<li>表 TABLE 存储的基本单元</li>
+<li>行 row 每个数据的最小表达方式</li>
+</ul>
+<h2 id="建立表">
+  建立表
+  <a class="anchor" href="#%e5%bb%ba%e7%ab%8b%e8%a1%a8">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> student(
+</span></span><span style="display:flex;"><span>    name  varchar2(<span style="color:#ae81ff">100</span>),
+</span></span><span style="display:flex;"><span>    age   number(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>    score number(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>    birthday date
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>以上代码运行后创建了一个名称 student 的表，其中</p>
+<ul>
+<li>studnet 表名，在有同一个用户中，不能重名，需要满足标识符要求</li>
+<li>name 列名，在同一个表中，不能重名，需要满足标识符要求</li>
+<li>varchar2(100) 数据类型</li>
+</ul>
+<h3 id="oracle-数据类型">
+  oracle 数据类型
+  <a class="anchor" href="#oracle-%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b">#</a>
+</h3>
+<ul>
+<li>date 日期</li>
+<li>number() 数字类型 number(5) 为 5 位的小数 number(5,2) 位 5 位，有 2 位小数</li>
+<li><del>blob/clob 二进制大数据</del></li>
+<li>varchar2(100) 长度为 100 的字符串</li>
+<li>timestamp 时间戳 （精确到 10 位的秒）</li>
+</ul>
+<h3 id="修改表">
+  修改表
+  <a class="anchor" href="#%e4%bf%ae%e6%94%b9%e8%a1%a8">#</a>
+</h3>
+<p>已有表的修改，请注意已有资料的情况</p>
+<h4 id="增加字段">
+  增加字段
+  <a class="anchor" href="#%e5%a2%9e%e5%8a%a0%e5%ad%97%e6%ae%b5">#</a>
+</h4>
+<blockquote>
+<p>无论什么情况，都可以增加字段</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> student <span style="color:#66d9ef">add</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">class</span> varchar2(<span style="color:#ae81ff">20</span>),
+</span></span><span style="display:flex;"><span>    parent varchar2(<span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>以上在 student 中增加了两个字段</p>
+<h4 id="减少字段">
+  减少字段
+  <a class="anchor" href="#%e5%87%8f%e5%b0%91%e5%ad%97%e6%ae%b5">#</a>
+</h4>
+<blockquote>
+<p>如果要减少的字段有任意一笔不为空的资料，不允许删除字段，所以删除字段前，需要先清空字段资料</p>
+</blockquote>
+<!-- TODO 连接到UPDATE -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">update</span> student <span style="color:#66d9ef">set</span> parent <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> student <span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">column</span> parent;
+</span></span></code></pre></div><ol>
+<li>更新字段值为<code>null</code></li>
+<li>删除字段</li>
+</ol>
+<h4 id="修改字段">
+  修改字段
+  <a class="anchor" href="#%e4%bf%ae%e6%94%b9%e5%ad%97%e6%ae%b5">#</a>
+</h4>
+<blockquote>
+<p>修改字段无论是数据类型，还是字段名称，如果已有资料也无法修改</p>
+</blockquote>
+<h5 id="通过删除字段">
+  通过删除字段
+  <a class="anchor" href="#%e9%80%9a%e8%bf%87%e5%88%a0%e9%99%a4%e5%ad%97%e6%ae%b5">#</a>
+</h5>
+<!-- TODO连接到UPDATE -->
+<ol>
+<li>新建临时字段存储要修改列的值</li>
+<li>将旧字段值设置为 null 后删除</li>
+<li>新增要新增的列</li>
+<li>新列的值设置为临时字段</li>
+<li>删除临时字段</li>
+</ol>
+<blockquote>
+<p>此方式，最后修改的字段总是在最后</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> student <span style="color:#66d9ef">add</span> name2 varchar(<span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">update</span> student <span style="color:#66d9ef">set</span> name2 <span style="color:#f92672">=</span> name;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">update</span> student <span style="color:#66d9ef">set</span> name <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> student <span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">column</span> name;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> student <span style="color:#66d9ef">add</span> id varchar2(<span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">update</span> student <span style="color:#66d9ef">set</span> id <span style="color:#f92672">=</span> name2;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">update</span> student <span style="color:#66d9ef">set</span> name2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> student <span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">column</span> name2;
+</span></span></code></pre></div><h5 id="通过重建表">
+  通过重建表
+  <a class="anchor" href="#%e9%80%9a%e8%bf%87%e9%87%8d%e5%bb%ba%e8%a1%a8">#</a>
+</h5>
+<!-- TODO链接到update select -->
+<ol>
+<li>新建临时表存储现表资料</li>
+<li>删除现表</li>
+<li>重建建立表</li>
+<li>将临时表资料储存到新表</li>
+<li>删除临时表</li>
+</ol>
+<blockquote>
+<p>此方式，字段的顺序可以受到控制</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> student2 <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> student;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">table</span> student;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> student (
+</span></span><span style="display:flex;"><span>    id  varchar2(<span style="color:#ae81ff">100</span>),
+</span></span><span style="display:flex;"><span>    age   number(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>    score number(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>    birthday date
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> student <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> student2;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">table</span> student2;
+</span></span></code></pre></div><h2 id="删除表">
+  删除表
+  <a class="anchor" href="#%e5%88%a0%e9%99%a4%e8%a1%a8">#</a>
+</h2>
+<blockquote>
+<p>删除表比较简单，但要注意备份资料</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">table</span> student;
+</span></span></code></pre></div><h2 id="主键">
+  主键
+  <a class="anchor" href="#%e4%b8%bb%e9%94%ae">#</a>
+</h2>
+<p>将一个或多个字段设置为主键，可以保证资料不重复。</p>
+<blockquote>
+<p>一个表最多存在 1 个主键，可以没有主键。主键名和表名一样，在用户中不可重复。</p>
+</blockquote>
+<p>例如：身份证，ID 号这些不重复的字段。如果是班级的话，xx 届和 xx 班，两字段加在一起这样也是不重复的。</p>
+<h3 id="创建表时创建主键">
+  创建表时创建主键
+  <a class="anchor" href="#%e5%88%9b%e5%bb%ba%e8%a1%a8%e6%97%b6%e5%88%9b%e5%bb%ba%e4%b8%bb%e9%94%ae">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> student (
+</span></span><span style="display:flex;"><span>    id  varchar2(<span style="color:#ae81ff">100</span>),
+</span></span><span style="display:flex;"><span>    age   number(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>    score number(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>    birthday date,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constraint</span> student_pk <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span>(id)
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="创建表后创建主键">
+  创建表后创建主键
+  <a class="anchor" href="#%e5%88%9b%e5%bb%ba%e8%a1%a8%e5%90%8e%e5%88%9b%e5%bb%ba%e4%b8%bb%e9%94%ae">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> student (
+</span></span><span style="display:flex;"><span>    id  varchar2(<span style="color:#ae81ff">100</span>),
+</span></span><span style="display:flex;"><span>    age   number(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>    score number(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>    birthday date,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constraint</span> student_pk <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span>(id)
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> student <span style="color:#66d9ef">add</span> <span style="color:#66d9ef">constraint</span> student_pk <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span> (id);
+</span></span></code></pre></div><h2 id="索引">
+  索引
+  <a class="anchor" href="#%e7%b4%a2%e5%bc%95">#</a>
+</h2>
+<blockquote>
+<p>索引在表中相当于时目录，如果查询时，走索引速度提升很多。（只在巨量数据时有明显效果，数据库量不多时，没必要考虑索引）</p>
+</blockquote>
+<ul>
+<li>查询通过索引可以提高查询速度，但会降低增删改的速度</li>
+<li>一个表可以建立多个索引</li>
+<li>只有数据量多的时候索引才会明显提升查询速度</li>
+<li>只有合适的查询（SELECT）语句才能使用索引查询</li>
+</ul>
+<h3 id="创建索引">
+  创建索引
+  <a class="anchor" href="#%e5%88%9b%e5%bb%ba%e7%b4%a2%e5%bc%95">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">index</span> student_idx <span style="color:#66d9ef">on</span> student(id,age);
+</span></span></code></pre></div><h3 id="删除索引">
+  删除索引
+  <a class="anchor" href="#%e5%88%a0%e9%99%a4%e7%b4%a2%e5%bc%95">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">index</span> student_idx;
+</span></span></code></pre></div><h3 id="重建索引">
+  重建索引
+  <a class="anchor" href="#%e9%87%8d%e5%bb%ba%e7%b4%a2%e5%bc%95">#</a>
+</h3>
+<blockquote>
+<p>删除重新创建即可</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">index</span> student_idx;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">index</span> student_idx <span style="color:#66d9ef">on</span> student(id,age);
+</span></span></code></pre></div><h2 id="外键">
+  <del>外键</del>
+  <a class="anchor" href="#%e5%a4%96%e9%94%ae">#</a>
+</h2>
+<p>当a表c1字段必须时b表d1字段中的一个的时候，可以将c1设置为d1字段的外键。这样在新增a表资料时，c1字段会自动检查是否在b表中存在，不存在不允许新增该资料。</p>
+<blockquote>
+<p>创建外键，会时两个表耦合性增加，且不利于问题排查，所以不建议使用，了解有这个东西即可。这个检查可以通过代码实现。</p>
+</blockquote>
+<h3 id="创建">
+  创建
+  <a class="anchor" href="#%e5%88%9b%e5%bb%ba">#</a>
+</h3>
+<ol>
+<li>创建表时创建</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> <span style="color:#66d9ef">class</span> (
+</span></span><span style="display:flex;"><span>    id  number(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> student(
+</span></span><span style="display:flex;"><span>    id number(<span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">class</span> number(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constraint</span> student_fk
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreign</span> <span style="color:#66d9ef">key</span> (<span style="color:#66d9ef">class</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">references</span> parent_table (id)
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h3 id="删除">
+  删除
+  <a class="anchor" href="#%e5%88%a0%e9%99%a4">#</a>
+</h3>
+<h3 id="重建">
+  重建
+  <a class="anchor" href="#%e9%87%8d%e5%bb%ba">#</a>
+</h3>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/first/DDL/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>编辑本页</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(n){const e=window.getSelection(),t=document.createRange();t.selectNodeContents(n),e.removeAllRanges(),e.addRange(t)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#ddl--数据定义语言">DDL&ndash;数据定义语言</a>
+      <ul>
+        <li><a href="#oracle-数据库结构">ORACLE 数据库结构</a></li>
+        <li><a href="#建立表">建立表</a>
+          <ul>
+            <li><a href="#oracle-数据类型">oracle 数据类型</a></li>
+            <li><a href="#修改表">修改表</a></li>
+          </ul>
+        </li>
+        <li><a href="#删除表">删除表</a></li>
+        <li><a href="#主键">主键</a>
+          <ul>
+            <li><a href="#创建表时创建主键">创建表时创建主键</a></li>
+            <li><a href="#创建表后创建主键">创建表后创建主键</a></li>
+          </ul>
+        </li>
+        <li><a href="#索引">索引</a>
+          <ul>
+            <li><a href="#创建索引">创建索引</a></li>
+            <li><a href="#删除索引">删除索引</a></li>
+            <li><a href="#重建索引">重建索引</a></li>
+          </ul>
+        </li>
+        <li><a href="#外键">外键</a>
+          <ul>
+            <li><a href="#创建">创建</a></li>
+            <li><a href="#删除">删除</a></li>
+            <li><a href="#重建">重建</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

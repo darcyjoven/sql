@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DDL 数据定义语句# CREATE TABLE ** 需掌握程度 *** ALTER TABLE ** 需掌握程度 *** DROP TABLE * 需掌握程度 ** CREATE INDEX *** 需掌握程度 ** DROP INDEX * 需掌握程度 **  DML 数据操纵语句#  SELECT 难度 ***** 需掌握程度 ****
- 基本语法 cloumn unique/distinct where and、or、not limit order by rownum 聚合 group by min、max count、avg、sum having like (*、？) in、between 子查询（查询嵌套） exists case 别名 join  inner join left/right (outer) join full (outer) join   union (all) insert into select    UPDATE 难度 ** 需掌握程度 ****">
+<meta name="description" content="SQL 结构化查询语言#DDL 数据定义#建表（必须掌握，简单）#修改表（必须掌握，简单）#删除表（必须掌握，简单）#主键（一般掌握，中等）#索引 （一般掌握，中等）#外键 （了解，中等）#DML 数据操作#新增 （必须掌握，简单）#修改 （必须掌握，简单）#删除 （必须掌握，简单）#SELECT 查询#查询结果&ndash;字段 （必须掌握，简单）#查询来源&ndash;表 （必须掌握，简单）#查询条件&ndash;判断语句 （必须掌握，中等）#查询排序&ndash;ORDER BY （必须掌握，简单）#多表查询 （必须掌握，中等）#聚合 （必须掌握，中等）#嵌套 （一般掌握，简单）#常用函数 （一般掌握，中等）#建立视图 （必须掌握，中等）#修改视图 （必须掌握，中等）#删除视图 （必须掌握，中等）#">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="SQL--结构化查询语言" />
 <meta property="og:description" content="" />
@@ -16,7 +15,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.2c64f5997d3ea83be6b0c7200bb43de1169931018bc7e5cdcf86cc390a3931b5.js" integrity="sha256-LGT1mX0&#43;qDvmsMcgC7Q94RaZMQGLx&#43;XNz4bMOQo5MbU=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.f2df09dbb72465deafe3510d067f33c661066ba43b0d722dd33df6da7e097aea.js" integrity="sha256-8t8J27ckZd6v41ENBn8zxmEGa6Q7DXIt0z322n4Jeuo=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/index.xml" title="一篇文章学会SQL" />
@@ -117,20 +116,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/SQL/all-in-one/" class="">一篇文章学完SQL</a>
-  
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>附件</span>
+    <span>SQL--结构化查询语言</span>
   
 
           
@@ -143,8 +129,13 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/SQL/attach/teachers-people/" class="">插入people和teachers</a>
+    <a href="/docs/SQL/first/DDL/" class="">DDL--数据定义言</a>
   
+
+          
+  <ul>
+    
+  </ul>
 
         </li>
       
@@ -156,11 +147,55 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/SQL/attach/ins-classess/" class="">登记班级资料</a>
+    <span>DML--数据操作语言</span>
   
+
+          
+  <ul>
+    
+  </ul>
 
         </li>
       
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9c4de171815630f1e7bf7d0b1c01b68e" class="toggle"  />
+    <label for="section-9c4de171815630f1e7bf7d0b1c01b68e" class="flex justify-between">
+      <a role="button" class="">查询语句详解</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>练习</span>
+  
+
+          
+  <ul>
     
   </ul>
 
@@ -242,10 +277,40 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#sql-结构化查询语言">SQL 结构化查询语言</a>
       <ul>
-        <li><a href="#ddl-数据定义语句">DDL 数据定义语句</a></li>
-        <li><a href="#dml-数据操纵语句">DML 数据操纵语句</a></li>
+        <li><a href="#ddl-数据定义">DDL 数据定义</a>
+          <ul>
+            <li><a href="#建表必须掌握简单firstddl建立表"><a href="./first/DDL/#%E5%BB%BA%E7%AB%8B%E8%A1%A8">建表（必须掌握，简单）</a></a></li>
+            <li><a href="#修改表必须掌握简单firstddl修改表"><a href="./first/DDL/#%E4%BF%AE%E6%94%B9%E8%A1%A8">修改表（必须掌握，简单）</a></a></li>
+            <li><a href="#删除表必须掌握简单firstddl删除表"><a href="./first/DDL/#%E5%88%A0%E9%99%A4%E8%A1%A8">删除表（必须掌握，简单）</a></a></li>
+            <li><a href="#主键一般掌握中等firstddl外键"><a href="./first/DDL/#%E5%A4%96%E9%94%AE">主键（一般掌握，中等）</a></a></li>
+            <li><a href="#索引--一般掌握中等">索引  （一般掌握，中等）</a></li>
+            <li><a href="#外键--了解中等">外键  （了解，中等）</a></li>
+          </ul>
+        </li>
+        <li><a href="#dml-数据操作">DML 数据操作</a>
+          <ul>
+            <li><a href="#新增-必须掌握简单">新增 （必须掌握，简单）</a></li>
+            <li><a href="#修改-必须掌握简单">修改 （必须掌握，简单）</a></li>
+            <li><a href="#删除-必须掌握简单">删除 （必须掌握，简单）</a></li>
+          </ul>
+        </li>
+        <li><a href="#select-查询">SELECT 查询</a>
+          <ul>
+            <li><a href="#查询结果--字段--必须掌握简单">查询结果&ndash;字段  （必须掌握，简单）</a></li>
+            <li><a href="#查询来源--表--必须掌握简单">查询来源&ndash;表  （必须掌握，简单）</a></li>
+            <li><a href="#查询条件--判断语句--必须掌握中等">查询条件&ndash;判断语句  （必须掌握，中等）</a></li>
+            <li><a href="#查询排序--order-by--必须掌握简单">查询排序&ndash;ORDER BY  （必须掌握，简单）</a></li>
+            <li><a href="#多表查询--必须掌握中等">多表查询  （必须掌握，中等）</a></li>
+            <li><a href="#聚合--必须掌握中等">聚合  （必须掌握，中等）</a></li>
+            <li><a href="#嵌套--一般掌握简单">嵌套  （一般掌握，简单）</a></li>
+            <li><a href="#常用函数--一般掌握中等">常用函数  （一般掌握，中等）</a></li>
+            <li><a href="#建立视图--必须掌握中等">建立视图  （必须掌握，中等）</a></li>
+            <li><a href="#修改视图--必须掌握中等">修改视图  （必须掌握，中等）</a></li>
+            <li><a href="#删除视图--必须掌握中等">删除视图  （必须掌握，中等）</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -260,68 +325,106 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h2 id="ddl-数据定义语句">
-  DDL 数据定义语句
-  <a class="anchor" href="#ddl-%e6%95%b0%e6%8d%ae%e5%ae%9a%e4%b9%89%e8%af%ad%e5%8f%a5">#</a>
+  <article class="markdown"><h1 id="sql-结构化查询语言">
+  SQL 结构化查询语言
+  <a class="anchor" href="#sql-%e7%bb%93%e6%9e%84%e5%8c%96%e6%9f%a5%e8%af%a2%e8%af%ad%e8%a8%80">#</a>
+</h1>
+<h2 id="ddl-数据定义">
+  DDL 数据定义
+  <a class="anchor" href="#ddl-%e6%95%b0%e6%8d%ae%e5%ae%9a%e4%b9%89">#</a>
 </h2>
-<ul>
-<li>CREATE TABLE <code>**</code> 需掌握程度 <code>***</code></li>
-<li>ALTER TABLE <code>**</code> 需掌握程度 <code>***</code></li>
-<li>DROP TABLE <code>*</code> 需掌握程度 <code>**</code></li>
-<li>CREATE INDEX <code>***</code> 需掌握程度 <code>**</code></li>
-<li>DROP INDEX <code>*</code> 需掌握程度 <code>**</code></li>
-</ul>
-<h2 id="dml-数据操纵语句">
-  DML 数据操纵语句
-  <a class="anchor" href="#dml-%e6%95%b0%e6%8d%ae%e6%93%8d%e7%ba%b5%e8%af%ad%e5%8f%a5">#</a>
+<h3 id="建表必须掌握简单firstddl建立表">
+  
+  <a href="/docs/SQL/first/DDL/#%e5%bb%ba%e7%ab%8b%e8%a1%a8">建表（必须掌握，简单）</a>
+  <a class="anchor" href="#%e5%bb%ba%e8%a1%a8%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e7%ae%80%e5%8d%95firstddl%e5%bb%ba%e7%ab%8b%e8%a1%a8">#</a>
+</h3>
+<h3 id="修改表必须掌握简单firstddl修改表">
+  
+  <a href="/docs/SQL/first/DDL/#%e4%bf%ae%e6%94%b9%e8%a1%a8">修改表（必须掌握，简单）</a>
+  <a class="anchor" href="#%e4%bf%ae%e6%94%b9%e8%a1%a8%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e7%ae%80%e5%8d%95firstddl%e4%bf%ae%e6%94%b9%e8%a1%a8">#</a>
+</h3>
+<h3 id="删除表必须掌握简单firstddl删除表">
+  
+  <a href="/docs/SQL/first/DDL/#%e5%88%a0%e9%99%a4%e8%a1%a8">删除表（必须掌握，简单）</a>
+  <a class="anchor" href="#%e5%88%a0%e9%99%a4%e8%a1%a8%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e7%ae%80%e5%8d%95firstddl%e5%88%a0%e9%99%a4%e8%a1%a8">#</a>
+</h3>
+<h3 id="主键一般掌握中等firstddl外键">
+  
+  <a href="/docs/SQL/first/DDL/#%e5%a4%96%e9%94%ae">主键（一般掌握，中等）</a>
+  <a class="anchor" href="#%e4%b8%bb%e9%94%ae%e4%b8%80%e8%88%ac%e6%8e%8c%e6%8f%a1%e4%b8%ad%e7%ad%89firstddl%e5%a4%96%e9%94%ae">#</a>
+</h3>
+<h3 id="索引--一般掌握中等">
+  索引  （一般掌握，中等）
+  <a class="anchor" href="#%e7%b4%a2%e5%bc%95--%e4%b8%80%e8%88%ac%e6%8e%8c%e6%8f%a1%e4%b8%ad%e7%ad%89">#</a>
+</h3>
+<h3 id="外键--了解中等">
+  外键  （了解，中等）
+  <a class="anchor" href="#%e5%a4%96%e9%94%ae--%e4%ba%86%e8%a7%a3%e4%b8%ad%e7%ad%89">#</a>
+</h3>
+<h2 id="dml-数据操作">
+  DML 数据操作
+  <a class="anchor" href="#dml-%e6%95%b0%e6%8d%ae%e6%93%8d%e4%bd%9c">#</a>
 </h2>
-<ul>
-<li>
-<p>SELECT 难度 <code>*****</code> 需掌握程度 <code>****</code></p>
-<ul>
-<li>基本语法</li>
-<li>cloumn</li>
-<li>unique/distinct</li>
-<li>where</li>
-<li>and、or、not</li>
-<li>limit</li>
-<li>order by</li>
-<li>rownum</li>
-<li>聚合</li>
-<li>group by</li>
-<li>min、max</li>
-<li>count、avg、sum</li>
-<li>having</li>
-<li>like (*、？)</li>
-<li>in、between</li>
-<li>子查询（查询嵌套）</li>
-<li>exists</li>
-<li>case</li>
-<li>别名</li>
-<li>join
-<ul>
-<li>inner join</li>
-<li>left/right (outer) join</li>
-<li>full (outer) join</li>
-</ul>
-</li>
-<li>union (all)</li>
-<li>insert into select</li>
-</ul>
-</li>
-<li>
-<p>UPDATE 难度 <code>**</code> 需掌握程度 <code>****</code></p>
-</li>
-<li>
-<p>DELETE 难度 <code>*</code> 需掌握程度 <code>****</code></p>
-</li>
-<li>
-<p>INSERT INTO 难度 <code>**</code> 需掌握程度 <code>****</code></p>
-</li>
-<li>
-<p>MERGE 难度 <code>***</code> 需掌握程度 <code>**</code></p>
-</li>
-</ul>
+<h3 id="新增-必须掌握简单">
+  新增 （必须掌握，简单）
+  <a class="anchor" href="#%e6%96%b0%e5%a2%9e-%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e7%ae%80%e5%8d%95">#</a>
+</h3>
+<h3 id="修改-必须掌握简单">
+  修改 （必须掌握，简单）
+  <a class="anchor" href="#%e4%bf%ae%e6%94%b9-%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e7%ae%80%e5%8d%95">#</a>
+</h3>
+<h3 id="删除-必须掌握简单">
+  删除 （必须掌握，简单）
+  <a class="anchor" href="#%e5%88%a0%e9%99%a4-%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e7%ae%80%e5%8d%95">#</a>
+</h3>
+<h2 id="select-查询">
+  SELECT 查询
+  <a class="anchor" href="#select-%e6%9f%a5%e8%af%a2">#</a>
+</h2>
+<h3 id="查询结果--字段--必须掌握简单">
+  查询结果&ndash;字段  （必须掌握，简单）
+  <a class="anchor" href="#%e6%9f%a5%e8%af%a2%e7%bb%93%e6%9e%9c--%e5%ad%97%e6%ae%b5--%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e7%ae%80%e5%8d%95">#</a>
+</h3>
+<h3 id="查询来源--表--必须掌握简单">
+  查询来源&ndash;表  （必须掌握，简单）
+  <a class="anchor" href="#%e6%9f%a5%e8%af%a2%e6%9d%a5%e6%ba%90--%e8%a1%a8--%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e7%ae%80%e5%8d%95">#</a>
+</h3>
+<h3 id="查询条件--判断语句--必须掌握中等">
+  查询条件&ndash;判断语句  （必须掌握，中等）
+  <a class="anchor" href="#%e6%9f%a5%e8%af%a2%e6%9d%a1%e4%bb%b6--%e5%88%a4%e6%96%ad%e8%af%ad%e5%8f%a5--%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e4%b8%ad%e7%ad%89">#</a>
+</h3>
+<h3 id="查询排序--order-by--必须掌握简单">
+  查询排序&ndash;ORDER BY  （必须掌握，简单）
+  <a class="anchor" href="#%e6%9f%a5%e8%af%a2%e6%8e%92%e5%ba%8f--order-by--%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e7%ae%80%e5%8d%95">#</a>
+</h3>
+<h3 id="多表查询--必须掌握中等">
+  多表查询  （必须掌握，中等）
+  <a class="anchor" href="#%e5%a4%9a%e8%a1%a8%e6%9f%a5%e8%af%a2--%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e4%b8%ad%e7%ad%89">#</a>
+</h3>
+<h3 id="聚合--必须掌握中等">
+  聚合  （必须掌握，中等）
+  <a class="anchor" href="#%e8%81%9a%e5%90%88--%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e4%b8%ad%e7%ad%89">#</a>
+</h3>
+<h3 id="嵌套--一般掌握简单">
+  嵌套  （一般掌握，简单）
+  <a class="anchor" href="#%e5%b5%8c%e5%a5%97--%e4%b8%80%e8%88%ac%e6%8e%8c%e6%8f%a1%e7%ae%80%e5%8d%95">#</a>
+</h3>
+<h3 id="常用函数--一般掌握中等">
+  常用函数  （一般掌握，中等）
+  <a class="anchor" href="#%e5%b8%b8%e7%94%a8%e5%87%bd%e6%95%b0--%e4%b8%80%e8%88%ac%e6%8e%8c%e6%8f%a1%e4%b8%ad%e7%ad%89">#</a>
+</h3>
+<h3 id="建立视图--必须掌握中等">
+  建立视图  （必须掌握，中等）
+  <a class="anchor" href="#%e5%bb%ba%e7%ab%8b%e8%a7%86%e5%9b%be--%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e4%b8%ad%e7%ad%89">#</a>
+</h3>
+<h3 id="修改视图--必须掌握中等">
+  修改视图  （必须掌握，中等）
+  <a class="anchor" href="#%e4%bf%ae%e6%94%b9%e8%a7%86%e5%9b%be--%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e4%b8%ad%e7%ad%89">#</a>
+</h3>
+<h3 id="删除视图--必须掌握中等">
+  删除视图  （必须掌握，中等）
+  <a class="anchor" href="#%e5%88%a0%e9%99%a4%e8%a7%86%e5%9b%be--%e5%bf%85%e9%a1%bb%e6%8e%8c%e6%8f%a1%e4%b8%ad%e7%ad%89">#</a>
+</h3>
 </article>
  
       
@@ -331,9 +434,9 @@ https://github.com/alex-shpak/hugo-book
   <div class="flex flex-wrap justify-between">
 
 
-  <div><a class="flex align-center" href="https://github.com/darcyjoven/sql/commit/fcfa72dd6b375bfac6f2777aad5855bd274de936" title='最后修改者 darcy | 2023年8月7日' target="_blank" rel="noopener">
+  <div><a class="flex align-center" href="https://github.com/darcyjoven/sql/commit/1adf26a6600506ef9586464dbd6d59df08041fe8" title='最后修改者 darcy | 2023年8月23日' target="_blank" rel="noopener">
       <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
-      <span>2023年8月7日</span>
+      <span>2023年8月23日</span>
     </a>
   </div>
 
@@ -376,10 +479,40 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#sql-结构化查询语言">SQL 结构化查询语言</a>
       <ul>
-        <li><a href="#ddl-数据定义语句">DDL 数据定义语句</a></li>
-        <li><a href="#dml-数据操纵语句">DML 数据操纵语句</a></li>
+        <li><a href="#ddl-数据定义">DDL 数据定义</a>
+          <ul>
+            <li><a href="#建表必须掌握简单firstddl建立表"><a href="./first/DDL/#%E5%BB%BA%E7%AB%8B%E8%A1%A8">建表（必须掌握，简单）</a></a></li>
+            <li><a href="#修改表必须掌握简单firstddl修改表"><a href="./first/DDL/#%E4%BF%AE%E6%94%B9%E8%A1%A8">修改表（必须掌握，简单）</a></a></li>
+            <li><a href="#删除表必须掌握简单firstddl删除表"><a href="./first/DDL/#%E5%88%A0%E9%99%A4%E8%A1%A8">删除表（必须掌握，简单）</a></a></li>
+            <li><a href="#主键一般掌握中等firstddl外键"><a href="./first/DDL/#%E5%A4%96%E9%94%AE">主键（一般掌握，中等）</a></a></li>
+            <li><a href="#索引--一般掌握中等">索引  （一般掌握，中等）</a></li>
+            <li><a href="#外键--了解中等">外键  （了解，中等）</a></li>
+          </ul>
+        </li>
+        <li><a href="#dml-数据操作">DML 数据操作</a>
+          <ul>
+            <li><a href="#新增-必须掌握简单">新增 （必须掌握，简单）</a></li>
+            <li><a href="#修改-必须掌握简单">修改 （必须掌握，简单）</a></li>
+            <li><a href="#删除-必须掌握简单">删除 （必须掌握，简单）</a></li>
+          </ul>
+        </li>
+        <li><a href="#select-查询">SELECT 查询</a>
+          <ul>
+            <li><a href="#查询结果--字段--必须掌握简单">查询结果&ndash;字段  （必须掌握，简单）</a></li>
+            <li><a href="#查询来源--表--必须掌握简单">查询来源&ndash;表  （必须掌握，简单）</a></li>
+            <li><a href="#查询条件--判断语句--必须掌握中等">查询条件&ndash;判断语句  （必须掌握，中等）</a></li>
+            <li><a href="#查询排序--order-by--必须掌握简单">查询排序&ndash;ORDER BY  （必须掌握，简单）</a></li>
+            <li><a href="#多表查询--必须掌握中等">多表查询  （必须掌握，中等）</a></li>
+            <li><a href="#聚合--必须掌握中等">聚合  （必须掌握，中等）</a></li>
+            <li><a href="#嵌套--一般掌握简单">嵌套  （一般掌握，简单）</a></li>
+            <li><a href="#常用函数--一般掌握中等">常用函数  （一般掌握，中等）</a></li>
+            <li><a href="#建立视图--必须掌握中等">建立视图  （必须掌握，中等）</a></li>
+            <li><a href="#修改视图--必须掌握中等">修改视图  （必须掌握，中等）</a></li>
+            <li><a href="#删除视图--必须掌握中等">删除视图  （必须掌握，中等）</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>

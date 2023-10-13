@@ -1,49 +1,42 @@
 ---
 weight: 1
 bookFlatSection: true
-bookCollapseSection: false
 title: "SQL--结构化查询语言"
 ---
 
-## DDL 数据定义语句
+# SQL 结构化查询语言
 
-- CREATE TABLE `**` 需掌握程度 `***`
-- ALTER TABLE `**` 需掌握程度 `***`
-- DROP TABLE `*` 需掌握程度 `**`
-- CREATE INDEX `***` 需掌握程度 `**`
-- DROP INDEX `*` 需掌握程度 `**`
+## DDL 数据定义
 
-## DML 数据操纵语句
+### [建表（必须掌握，简单）](./first/DDL/#建立表)
+### [修改表（必须掌握，简单）](./first/DDL/#修改表)
+### [删除表（必须掌握，简单）](./first/DDL/#删除表)
 
-- SELECT 难度 `*****` 需掌握程度 `****`
 
-  - 基本语法
-  - cloumn
-  - unique/distinct
-  - where
-  - and、or、not
-  - limit
-  - order by
-  - rownum
-  - 聚合
-  - group by
-  - min、max
-  - count、avg、sum
-  - having
-  - like (\*、？)
-  - in、between
-  - 子查询（查询嵌套）
-  - exists
-  - case
-  - 别名
-  - join
-    - inner join
-    - left/right (outer) join
-    - full (outer) join
-  - union (all)
-  - insert into select
+### [主键（一般掌握，中等）](./first/DDL/#外键)
+### 索引  （一般掌握，中等）
+### 外键  （了解，中等）
 
-- UPDATE 难度 `**` 需掌握程度 `****`
-- DELETE 难度 `*` 需掌握程度 `****`
-- INSERT INTO 难度 `**` 需掌握程度 `****`
-- MERGE 难度 `***` 需掌握程度 `**`
+
+## DML 数据操作
+
+### 新增 （必须掌握，简单）
+### 修改 （必须掌握，简单）
+### 删除 （必须掌握，简单）
+
+
+## SELECT 查询
+
+### 查询结果--字段  （必须掌握，简单）
+### 查询来源--表  （必须掌握，简单）
+### 查询条件--判断语句  （必须掌握，中等）
+### 查询排序--ORDER BY  （必须掌握，简单）
+
+### 多表查询  （必须掌握，中等）
+### 聚合  （必须掌握，中等）
+### 嵌套  （一般掌握，简单）
+### 常用函数  （一般掌握，中等）
+ 
+### 建立视图  （必须掌握，中等）
+### 修改视图  （必须掌握，中等）
+### 删除视图  （必须掌握，中等）

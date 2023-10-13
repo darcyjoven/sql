@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQL--结构化查询语言 on 一篇文章学会SQL</title>
+    <link>https://sql.darcyjoven.com/docs/SQL/first/</link>
+    <description>Recent content in SQL--结构化查询语言 on 一篇文章学会SQL</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://sql.darcyjoven.com/docs/SQL/first/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

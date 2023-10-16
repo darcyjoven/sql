@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="SELECT&ndash;查询语句详解#查询语句组成#结果&ndash;字段（select）# 查询语句的最前面
+ select 字段1,字段2,字段3,&#39;6班&#39; 班级  * 匹配所有字段:  select * select student.*,class.*   字面常量： 数值和字符串都可以以字面常量作为字段结果
+  别名：
+  select id,name 姓名,age as 年纪 查询结果中会以别名显示
+ 字段运算:  select id,&#39;姓名&#39;||name,age&#43;2 查询字段可以进行字段运算，字符串拼接为||拼接，数学运算符号&#43;-*/都可以使用
+ 判断语句： SQL 中判断语句比较特殊，它只能返回一个值，且每个分支返回值必须一致。  -- 从一个变量的值判断 select case sex when &#39;男&#39; then &#39;我是男生&#39; when &#39;女&#39; then &#39;我是女生&#39; else &#39;我是人妖&#39; end as 性别 -- 从条件表达式判断 select case when age &lt; 8 then &#39;小学生&#39; when age &lt; 16 then &#39;初中生&#39; when age &lt; 24 &#39;大学生&#39; else &#39;老人&#39; end as 年纪 来源&ndash;表（from）# 必须在字段之后">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="查询语句详解" />
 <meta property="og:description" content="" />
@@ -15,7 +20,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.389cc99fb2a0a8fd7a7cfcdf43ad9f123ae776b5c1a257f6b9973458e9ae45a7.js" integrity="sha256-OJzJn7KgqP16fPzfQ62fEjrndrXBolf2uZc0WOmuRac=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.fa28aed5ad560cfe62d3313f73d52c8d3f0e4dd90765b347df26126aa3b16a42.js" integrity="sha256-&#43;iiu1a1WDP5i0zE/c9UsjT8OTdkHZbNH3yYSaqOxakI=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/first/SELECT/index.xml" title="一篇文章学会SQL" />
@@ -147,7 +152,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <span>DML--数据操作语言</span>
+    <a href="/docs/SQL/first/DML/" class="">DML--数据操作语言</a>
   
 
           
@@ -167,12 +172,90 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-9c4de171815630f1e7bf7d0b1c01b68e" class="toggle" checked />
     <label for="section-9c4de171815630f1e7bf7d0b1c01b68e" class="flex justify-between">
-      <a role="button" class="active">查询语句详解</a>
+      <a href="/docs/SQL/first/SELECT/" class="active">查询语句详解</a>
     </label>
   
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/join/" class="">多表查询</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/group/" class="">聚合查询</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/nest/" class="">嵌套查询</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/function/" class="">常用函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/view/" class="">视图</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/dmlBySelect/" class="">使用SELECT更新数据</a>
+  
+
+        </li>
+      
     
   </ul>
 
@@ -275,7 +358,22 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#select--查询语句详解">SELECT&ndash;查询语句详解</a>
+      <ul>
+        <li><a href="#查询语句组成">查询语句组成</a>
+          <ul>
+            <li><a href="#结果--字段select">结果&ndash;字段（select）</a></li>
+            <li><a href="#来源--表from">来源&ndash;表（from）</a></li>
+            <li><a href="#条件--判断语句where">条件&ndash;判断语句（where）</a></li>
+            <li><a href="#顺序--排序order-by">顺序&ndash;排序（order-by）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
 
@@ -286,7 +384,152 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"></article>
+  <article class="markdown"><h1 id="select--查询语句详解">
+  SELECT&ndash;查询语句详解
+  <a class="anchor" href="#select--%e6%9f%a5%e8%af%a2%e8%af%ad%e5%8f%a5%e8%af%a6%e8%a7%a3">#</a>
+</h1>
+<h2 id="查询语句组成">
+  查询语句组成
+  <a class="anchor" href="#%e6%9f%a5%e8%af%a2%e8%af%ad%e5%8f%a5%e7%bb%84%e6%88%90">#</a>
+</h2>
+<h3 id="结果--字段select">
+  结果&ndash;字段（select）
+  <a class="anchor" href="#%e7%bb%93%e6%9e%9c--%e5%ad%97%e6%ae%b5select">#</a>
+</h3>
+<blockquote>
+<p>查询语句的最前面</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#960050;background-color:#1e0010">字段</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">字段</span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010">字段</span><span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#39;6班&#39;</span> <span style="color:#960050;background-color:#1e0010">班级</span>
+</span></span></code></pre></div><ul>
+<li><code>*</code> 匹配所有字段:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> student.<span style="color:#f92672">*</span>,<span style="color:#66d9ef">class</span>.<span style="color:#f92672">*</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>字面常量：
+数值和字符串都可以以字面常量作为字段结果</p>
+</li>
+<li>
+<p>别名：</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> id,name <span style="color:#960050;background-color:#1e0010">姓名</span>,age <span style="color:#66d9ef">as</span> <span style="color:#960050;background-color:#1e0010">年纪</span>
+</span></span></code></pre></div><p>查询结果中会以别名显示</p>
+<ul>
+<li>字段运算:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> id,<span style="color:#e6db74">&#39;姓名&#39;</span><span style="color:#f92672">||</span>name,age<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>
+</span></span></code></pre></div><p>查询字段可以进行字段运算，字符串拼接为<code>||</code>拼接，数学运算符号<code>+-*/</code>都可以使用</p>
+<ul>
+<li>判断语句：
+SQL 中判断语句比较特殊，它只能返回一个值，且每个分支返回值必须一致。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 从一个变量的值判断
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#66d9ef">case</span> sex <span style="color:#66d9ef">when</span> <span style="color:#e6db74">&#39;男&#39;</span> <span style="color:#66d9ef">then</span> <span style="color:#e6db74">&#39;我是男生&#39;</span> <span style="color:#66d9ef">when</span> <span style="color:#e6db74">&#39;女&#39;</span> <span style="color:#66d9ef">then</span> <span style="color:#e6db74">&#39;我是女生&#39;</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#39;我是人妖&#39;</span> <span style="color:#66d9ef">end</span> <span style="color:#66d9ef">as</span> <span style="color:#960050;background-color:#1e0010">性别</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 从条件表达式判断
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">when</span> age <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span> <span style="color:#66d9ef">then</span> <span style="color:#e6db74">&#39;小学生&#39;</span> <span style="color:#66d9ef">when</span> age <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">16</span> <span style="color:#66d9ef">then</span> <span style="color:#e6db74">&#39;初中生&#39;</span> <span style="color:#66d9ef">when</span> age <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">24</span> <span style="color:#e6db74">&#39;大学生&#39;</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#39;老人&#39;</span> <span style="color:#66d9ef">end</span> <span style="color:#66d9ef">as</span> <span style="color:#960050;background-color:#1e0010">年纪</span>
+</span></span></code></pre></div><h3 id="来源--表from">
+  来源&ndash;表（from）
+  <a class="anchor" href="#%e6%9d%a5%e6%ba%90--%e8%a1%a8from">#</a>
+</h3>
+<blockquote>
+<p>必须在字段之后</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">from</span> student,<span style="color:#66d9ef">class</span>
+</span></span></code></pre></div><ul>
+<li>别名：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">from</span> student <span style="color:#66d9ef">as</span> s
+</span></span></code></pre></div><ul>
+<li>表字段:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> s.id,<span style="color:#66d9ef">class</span>.id <span style="color:#66d9ef">from</span> student <span style="color:#66d9ef">as</span> s,<span style="color:#66d9ef">class</span>
+</span></span></code></pre></div><p>当多个表中字段有重名时，使用字段必须指定字段属于哪个表</p>
+<h3 id="条件--判断语句where">
+  条件&ndash;判断语句（where）
+  <a class="anchor" href="#%e6%9d%a1%e4%bb%b6--%e5%88%a4%e6%96%ad%e8%af%ad%e5%8f%a5where">#</a>
+</h3>
+<blockquote>
+<p>必须放在 from 之后</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">where</span> student.id <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">and</span> student.name <span style="color:#66d9ef">like</span> <span style="color:#e6db74">&#39;张%&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">and</span> student.id<span style="color:#f92672">=</span><span style="color:#66d9ef">class</span>.id
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">and</span> (student.age <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">18</span> <span style="color:#66d9ef">or</span> student.age <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">and</span> student.birth <span style="color:#66d9ef">between</span> to_date(<span style="color:#e6db74">&#39;2000-01-01&#39;</span>,<span style="color:#e6db74">&#39;yyyy-mm-dd&#39;</span>) <span style="color:#66d9ef">and</span> to_date(<span style="color:#e6db74">&#39;2020-12-31&#39;</span>,<span style="color:#e6db74">&#39;yyyy-mm-dd&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">and</span> sex <span style="color:#66d9ef">in</span> (<span style="color:#e6db74">&#39;男&#39;</span>,<span style="color:#e6db74">&#39;女&#39;</span>)
+</span></span></code></pre></div><blockquote>
+<p>where 可以从众多的资料中筛选出符号目标要求的资料，所以 where 在查询语句中是最复杂的。</p>
+</blockquote>
+<blockquote>
+<p>我们在写 where 语句的时候，应该从简单语句开始写，分块写，防止多个筛选条件混合到一起。</p>
+</blockquote>
+<ul>
+<li>比较运算符：
+大于、小于、等于这些运算符在 where 中也可以写。</li>
+</ul>
+<p><code>&gt;=</code>,<code>&lt;=</code>,<code>&lt;&gt;/!=</code></p>
+<ul>
+<li>逻辑运算符：
+多个运算符之间用<code>and</code>或者<code>or</code>相连。 括号会改变判断语句运算顺序</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 年纪大于10岁或者小于5岁的女人
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">where</span> (age <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span> <span style="color:#66d9ef">or</span> age <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>) <span style="color:#66d9ef">and</span> sex <span style="color:#f92672">=</span><span style="color:#e6db74">&#39;女&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 年纪大于10岁的人或者小于5岁的女人
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">where</span> age <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span> <span style="color:#66d9ef">or</span> (age <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span> <span style="color:#66d9ef">and</span> sex <span style="color:#f92672">=</span><span style="color:#e6db74">&#39;女&#39;</span>)
+</span></span></code></pre></div><ul>
+<li>模糊查询：
+字符串模糊查询，like 运算符，
+<code>%</code>匹配任意多(包括 0)个任意字符，
+<code>_</code>匹配一个任意字符</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 匹配&#39;张&#39;开始的字符串   张三 张  张98ahs 等都符和
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">where</span> name <span style="color:#66d9ef">like</span> <span style="color:#e6db74">&#39;张%&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 匹配&#39;张&#39;开始，且后面之后一个字符的字符串  张三 张四 张w 符和  张 张sw  不符合
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">where</span> name <span style="color:#66d9ef">like</span> <span style="color:#e6db74">&#39;张_&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 匹配字符中有一个&#39;h&#39;和&#39;o&#39;,且&#39;h&#39;在&#39;o&#39;前面， hello hsasaodaidup ooohhooo 都符和
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">where</span> name <span style="color:#66d9ef">like</span> <span style="color:#e6db74">&#39;%h%o&#39;</span>
+</span></span></code></pre></div><ul>
+<li>between 范围判断:</li>
+</ul>
+<p>between 可以判断一个连续的区间，数值，日期，单个字符都可以判断。</p>
+<blockquote>
+<p>这里的<code>and</code> 和上面的<code>and</code>不是同一个意思。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 年纪在1到10之间
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">where</span> age <span style="color:#66d9ef">between</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">and</span> <span style="color:#ae81ff">10</span>
+</span></span></code></pre></div><ul>
+<li>in 范围判断：
+in 判断一个值是否在某个范围之内，这个不是连续的，而是一个集合。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 年纪是1，2，10
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">where</span> age <span style="color:#66d9ef">in</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 年纪不是18，19
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">where</span> age <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">in</span> (<span style="color:#ae81ff">18</span>,<span style="color:#ae81ff">19</span>)
+</span></span></code></pre></div><h3 id="顺序--排序order-by">
+  顺序&ndash;排序（order-by）
+  <a class="anchor" href="#%e9%a1%ba%e5%ba%8f--%e6%8e%92%e5%ba%8forder-by">#</a>
+</h3>
+<blockquote>
+<p>在 sql 语句的最后一步写，不一定是 where 后</p>
+</blockquote>
+<blockquote>
+<p>可以不排序，此时数据库按照查出来的顺序排序</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> name,age <span style="color:#66d9ef">desc</span>,id esc
+</span></span></code></pre></div><ul>
+<li>
+<p>多字段：
+排序是按照字段先后顺序排，如果第一个字段有相同，才会按照第二个字段排序，第二个也相同，才会按第三个&hellip;</p>
+</li>
+<li>
+<p>顺序/倒叙:
+顺序是按照 ASCII 表中数字大小排序的，中文是按照 GBK 表中数字大小排序的（既不是笔画也不是拼音）。</p>
+</li>
+</ul>
+<p><code>esc</code>是顺序，<code>desc</code>是倒叙，如果补标注默认是<code>esc</code>倒叙</p>
+</article>
  
       
 
@@ -324,6 +567,10 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -334,7 +581,22 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#select--查询语句详解">SELECT&ndash;查询语句详解</a>
+      <ul>
+        <li><a href="#查询语句组成">查询语句组成</a>
+          <ul>
+            <li><a href="#结果--字段select">结果&ndash;字段（select）</a></li>
+            <li><a href="#来源--表from">来源&ndash;表（from）</a></li>
+            <li><a href="#条件--判断语句where">条件&ndash;判断语句（where）</a></li>
+            <li><a href="#顺序--排序order-by">顺序&ndash;排序（order-by）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
  

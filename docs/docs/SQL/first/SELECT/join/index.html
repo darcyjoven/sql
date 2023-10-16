@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="多表查询#资料准备
+-- table1 : create table user1(id number(3), user_name varchar(10), over varchar(10)); insert into user1 values(1, &#39;tangseng&#39;, &#39;dtgdf&#39;); insert into user1 values(2, &#39;sunwukong&#39;, &#39;dzsf&#39;); insert into user1 values(1, &#39;zhubajie&#39;, &#39;jtsz&#39;); insert into user1 values(1, &#39;shaseng&#39;, &#39;jslh&#39;); -- table2 : create table user2(id number(3), user_name varchar(10), over varchar(10)); insert into user2 values(1, &#39;sunwukong&#39;, &#39;chengfo&#39;); insert into user2 values(2, &#39;niumowang&#39;, &#39;chengyao&#39;); insert into user2 values(3, &#39;jiaomowang&#39;, &#39;chengyao&#39;); insert into user2 values(4, &#39;pengmowang&#39;, &#39;chengyao&#39;); INNER 内连接#select a.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="多表查询" />
+<meta property="og:description" content="多表查询#资料准备
+-- table1 : create table user1(id number(3), user_name varchar(10), over varchar(10)); insert into user1 values(1, &#39;tangseng&#39;, &#39;dtgdf&#39;); insert into user1 values(2, &#39;sunwukong&#39;, &#39;dzsf&#39;); insert into user1 values(1, &#39;zhubajie&#39;, &#39;jtsz&#39;); insert into user1 values(1, &#39;shaseng&#39;, &#39;jslh&#39;); -- table2 : create table user2(id number(3), user_name varchar(10), over varchar(10)); insert into user2 values(1, &#39;sunwukong&#39;, &#39;chengfo&#39;); insert into user2 values(2, &#39;niumowang&#39;, &#39;chengyao&#39;); insert into user2 values(3, &#39;jiaomowang&#39;, &#39;chengyao&#39;); insert into user2 values(4, &#39;pengmowang&#39;, &#39;chengyao&#39;); INNER 内连接#select a." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sql.darcyjoven.com/docs/SQL/first/SELECT/join/" /><meta property="article:section" content="docs" />
+
+
+
+<title>多表查询 | 一篇文章学会SQL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/zh.search.min.fa28aed5ad560cfe62d3313f73d52c8d3f0e4dd90765b347df26126aa3b16a42.js" integrity="sha256-&#43;iiu1a1WDP5i0zE/c9UsjT8OTdkHZbNH3yYSaqOxakI=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>一篇文章学会SQL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+  
+
+
+
+  
+    
+  
+
+
+
+<ul class="book-languages">
+  <li>
+    <input type="checkbox" id="languages" class="toggle" />
+    <label for="languages" class="flex justify-between">
+      <a role="button" class="flex align-center">
+        <img src="/svg/translate.svg" class="book-icon" alt="Languages" />
+        简体中文
+      </a>
+    </label>
+
+    <ul>
+      
+      <li>
+        <a href="https://sql.darcyjoven.com/en/">
+          English
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/SQL/" class="">SQL--结构化查询语言</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>SQL--结构化查询语言</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/DDL/" class="">DDL--数据定义言</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/DML/" class="">DML--数据操作语言</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9c4de171815630f1e7bf7d0b1c01b68e" class="toggle" checked />
+    <label for="section-9c4de171815630f1e7bf7d0b1c01b68e" class="flex justify-between">
+      <a href="/docs/SQL/first/SELECT/" class="">查询语句详解</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/join/" class="active">多表查询</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/group/" class="">聚合查询</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/nest/" class="">嵌套查询</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/function/" class="">常用函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/view/" class="">视图</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/dmlBySelect/" class="">使用SELECT更新数据</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>练习</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://github.com/darcyjoven/sql"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/"  target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>多表查询</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#多表查询">多表查询</a>
+      <ul>
+        <li><a href="#inner-内连接">INNER 内连接</a></li>
+        <li><a href="#leftright">LEFT/RIGHT</a>
+          <ul>
+            <li><a href="#left">LEFT</a></li>
+            <li><a href="#right">RIGHT</a></li>
+          </ul>
+        </li>
+        <li><a href="#full">FULL</a></li>
+        <li><a href="#笛卡尔连接交叉连接">笛卡尔连接(交叉连接)</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="多表查询">
+  多表查询
+  <a class="anchor" href="#%e5%a4%9a%e8%a1%a8%e6%9f%a5%e8%af%a2">#</a>
+</h1>
+<p>资料准备</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- table1 :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> user1(id number(<span style="color:#ae81ff">3</span>), user_name varchar(<span style="color:#ae81ff">10</span>), over varchar(<span style="color:#ae81ff">10</span>));
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> user1 <span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;tangseng&#39;</span>, <span style="color:#e6db74">&#39;dtgdf&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> user1 <span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;sunwukong&#39;</span>, <span style="color:#e6db74">&#39;dzsf&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> user1 <span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;zhubajie&#39;</span>, <span style="color:#e6db74">&#39;jtsz&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> user1 <span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;shaseng&#39;</span>, <span style="color:#e6db74">&#39;jslh&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- table2 :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> user2(id number(<span style="color:#ae81ff">3</span>), user_name varchar(<span style="color:#ae81ff">10</span>), over varchar(<span style="color:#ae81ff">10</span>));
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> user2 <span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;sunwukong&#39;</span>, <span style="color:#e6db74">&#39;chengfo&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> user2 <span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;niumowang&#39;</span>, <span style="color:#e6db74">&#39;chengyao&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> user2 <span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;jiaomowang&#39;</span>, <span style="color:#e6db74">&#39;chengyao&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> user2 <span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;pengmowang&#39;</span>, <span style="color:#e6db74">&#39;chengyao&#39;</span>);
+</span></span></code></pre></div><h2 id="inner-内连接">
+  <del>INNER 内连接</del>
+  <a class="anchor" href="#inner-%e5%86%85%e8%bf%9e%e6%8e%a5">#</a>
+</h2>
+<p>
+  <img src="images/image.png" alt="内连接" /></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> a.id, a.user_name, b.over
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> user1 a
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inner</span> <span style="color:#66d9ef">join</span> user2 b
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span> a.user_name<span style="color:#f92672">=</span>b.user_name;
+</span></span></code></pre></div><pre><code>ID USER_NAME  OVER
+---- ---------- ----------
+2 sunwukong  chengfo
+</code></pre>
+<h2 id="leftright">
+  LEFT/RIGHT
+  <a class="anchor" href="#leftright">#</a>
+</h2>
+<h3 id="left">
+  LEFT
+  <a class="anchor" href="#left">#</a>
+</h3>
+<p>
+  <img src="images/image-2.png" alt="LEFT" /></p>
+<blockquote>
+<p><code>left join</code>是<code>left outer join</code>的缩写，<code>outer 可以不写</code></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> a.id, a.user_name, b.over
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> user1 a
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">left</span> <span style="color:#66d9ef">outer</span> <span style="color:#66d9ef">join</span> user2 b
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span> a.user_name<span style="color:#f92672">=</span>b.user_name;
+</span></span></code></pre></div><pre><code>ID USER_NAME  OVER
+---- ---------- ----------
+2 sunwukong  chengfo
+1 shaseng
+1 zhubajie
+1 tangseng
+</code></pre>
+<h3 id="right">
+  <del>RIGHT</del>
+  <a class="anchor" href="#right">#</a>
+</h3>
+<p>
+  <img src="images/image-3.png" alt="right" /></p>
+<blockquote>
+<p><code>left join</code>和<code>right join</code>区别就是量表的顺序不同，所以 <code>a left join b</code>和<code>b right join a</code> 是完全等效的，所以<code>right join</code>不必学习，使用时仅使用<code>left join</code>即可</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> b.user_name, b.over, a.over
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> user1 a
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">right</span> <span style="color:#66d9ef">join</span> user2 b
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span> a.user_name<span style="color:#f92672">=</span>b.user_name;
+</span></span></code></pre></div><pre><code>USER_NAME  OVER       OVER
+---------- ---------- ----------
+sunwukong  chengfo    dzsf
+niumowang  chengyao
+jiaomowang chengyao
+pengmowang chengyao
+</code></pre>
+<h2 id="full">
+  <del>FULL</del>
+  <a class="anchor" href="#full">#</a>
+</h2>
+<p>
+  <img src="images/image-1.png" alt="FULL" /></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> a.id, a.user_name, b.over
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> user1 a
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">full</span> <span style="color:#66d9ef">join</span> user2 b
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span> a.user_name<span style="color:#f92672">=</span>b.user_name
+</span></span></code></pre></div><pre><code>ID USER_NAME  OVER
+---- ---------- ----------
+2 sunwukong  chengfo
+                chengyao
+                chengyao
+                chengyao
+1 shaseng
+1 zhubajie
+1 tangseng
+</code></pre>
+<h2 id="笛卡尔连接交叉连接">
+  笛卡尔连接(交叉连接)
+  <a class="anchor" href="#%e7%ac%9b%e5%8d%a1%e5%b0%94%e8%bf%9e%e6%8e%a5%e4%ba%a4%e5%8f%89%e8%bf%9e%e6%8e%a5">#</a>
+</h2>
+<p>
+  <img src="images/image-4.png" alt="笛卡尔连接" /></p>
+<blockquote>
+<p><code>a,b</code>是<code>a cross b</code>的缩写，通常情况下，我们会进一步使用 where 条件筛选资料</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> a.id,a.user_name,b.id,b.user_name
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> user1 a,user2 b;
+</span></span></code></pre></div><pre><code>ID USER_NAME    ID USER_NAME
+---- ---------- ---- ----------
+1 tangseng      1 sunwukong
+1 tangseng      2 niumowang
+1 tangseng      3 jiaomowang
+1 tangseng      4 pengmowang
+2 sunwukong     1 sunwukong
+2 sunwukong     2 niumowang
+2 sunwukong     3 jiaomowang
+2 sunwukong     4 pengmowang
+1 zhubajie      1 sunwukong
+1 zhubajie      2 niumowang
+1 zhubajie      3 jiaomowang
+1 zhubajie      4 pengmowang
+1 shaseng       1 sunwukong
+1 shaseng       2 niumowang
+1 shaseng       3 jiaomowang
+1 shaseng       4 pengmowang
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> a.id, a.user_name, b.over
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> user1 a,user2 b
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> a.user_name<span style="color:#f92672">=</span>b.user_name;
+</span></span></code></pre></div><blockquote>
+<p>以上笛卡尔连接，配合<code>where</code>条件等效以下内连接，所以内连接也不需要学。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> a.id, a.user_name, b.over
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> user1 a
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inner</span> <span style="color:#66d9ef">join</span> user2 b
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span> a.user_name<span style="color:#f92672">=</span>b.user_name;
+</span></span></code></pre></div><pre><code>ID USER_NAME  OVER
+---- ---------- ----------
+2 sunwukong  chengfo
+</code></pre>
+<h2 id="总结">
+  总结
+  <a class="anchor" href="#%e6%80%bb%e7%bb%93">#</a>
+</h2>
+<p>综上所述，我们只要笛卡尔连接，和<code>LEFT</code>左连接就可以解锁99%的场景，剩下1%场景，我们可以使用代码协助。</p>
+<ul>
+<li>
+<p>笛卡尔连接，两个表都存在数据，才会显示出来</p>
+</li>
+<li>
+<p>LEFT 连接，只要左表存在数据，右表数据为NULL也会显示出来</p>
+</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/first/SELECT/join.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>编辑本页</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(n){const e=window.getSelection(),t=document.createRange();t.selectNodeContents(n),e.removeAllRanges(),e.addRange(t)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#多表查询">多表查询</a>
+      <ul>
+        <li><a href="#inner-内连接">INNER 内连接</a></li>
+        <li><a href="#leftright">LEFT/RIGHT</a>
+          <ul>
+            <li><a href="#left">LEFT</a></li>
+            <li><a href="#right">RIGHT</a></li>
+          </ul>
+        </li>
+        <li><a href="#full">FULL</a></li>
+        <li><a href="#笛卡尔连接交叉连接">笛卡尔连接(交叉连接)</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

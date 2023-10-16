@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="DML&ndash;数据操作语言#新增#已知表student结构如下:
+create table student(  id number(10),  name varchar(20),  sex varchar(20),  age number(5),  birthday date ) insert into student values(1,&#39;张三&#39;,&#39;男&#39;,19,to_date(&#39;951221&#39;,&#39;yymmdd&#39;)); insert into student (name,id,age) values(&#39;小红&#39;,2,19); 修改# ID NAME SEX AGE BIRTHDAY----------- -------------------- -------------------- ------ -----------1 张三 男 19 2095-12-212 小红 19  student资料如上
+-- 1.更新小红性别为女 update student set sex=&#39;女&#39; where name=&#39;小红&#39;; -- 2.将所有人年龄更新为12 update student set age=12; 删除# ID NAME SEX AGE BIRTHDAY----------- -------------------- -------------------- ------ -----------1 张三 男 12 2095-12-212 小红 女 12  student资料如上">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="DML--数据操作语言" />
 <meta property="og:description" content="" />
@@ -15,7 +17,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.389cc99fb2a0a8fd7a7cfcdf43ad9f123ae776b5c1a257f6b9973458e9ae45a7.js" integrity="sha256-OJzJn7KgqP16fPzfQ62fEjrndrXBolf2uZc0WOmuRac=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.fa28aed5ad560cfe62d3313f73d52c8d3f0e4dd90765b347df26126aa3b16a42.js" integrity="sha256-&#43;iiu1a1WDP5i0zE/c9UsjT8OTdkHZbNH3yYSaqOxakI=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/first/DML/index.xml" title="一篇文章学会SQL" />
@@ -147,7 +149,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <span>DML--数据操作语言</span>
+    <a href="/docs/SQL/first/DML/" class="active">DML--数据操作语言</a>
   
 
           
@@ -167,12 +169,90 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-9c4de171815630f1e7bf7d0b1c01b68e" class="toggle"  />
     <label for="section-9c4de171815630f1e7bf7d0b1c01b68e" class="flex justify-between">
-      <a role="button" class="">查询语句详解</a>
+      <a href="/docs/SQL/first/SELECT/" class="">查询语句详解</a>
     </label>
   
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/join/" class="">多表查询</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/group/" class="">聚合查询</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/nest/" class="">嵌套查询</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/function/" class="">常用函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/view/" class="">视图</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/dmlBySelect/" class="">使用SELECT更新数据</a>
+  
+
+        </li>
+      
     
   </ul>
 
@@ -275,7 +355,17 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#dml--数据操作语言">DML&ndash;数据操作语言</a>
+      <ul>
+        <li><a href="#新增">新增</a></li>
+        <li><a href="#修改">修改</a></li>
+        <li><a href="#删除">删除</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
 
@@ -286,7 +376,56 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"></article>
+  <article class="markdown"><h1 id="dml--数据操作语言">
+  DML&ndash;数据操作语言
+  <a class="anchor" href="#dml--%e6%95%b0%e6%8d%ae%e6%93%8d%e4%bd%9c%e8%af%ad%e8%a8%80">#</a>
+</h1>
+<h2 id="新增">
+  新增
+  <a class="anchor" href="#%e6%96%b0%e5%a2%9e">#</a>
+</h2>
+<p>已知表student结构如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> student(
+</span></span><span style="display:flex;"><span>    id number(<span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>    name varchar(<span style="color:#ae81ff">20</span>),
+</span></span><span style="display:flex;"><span>    sex varchar(<span style="color:#ae81ff">20</span>),
+</span></span><span style="display:flex;"><span>    age number(<span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>    birthday date
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> student <span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;张三&#39;</span>,<span style="color:#e6db74">&#39;男&#39;</span>,<span style="color:#ae81ff">19</span>,to_date(<span style="color:#e6db74">&#39;951221&#39;</span>,<span style="color:#e6db74">&#39;yymmdd&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> student (name,id,age) <span style="color:#66d9ef">values</span>(<span style="color:#e6db74">&#39;小红&#39;</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">19</span>);
+</span></span></code></pre></div><h2 id="修改">
+  修改
+  <a class="anchor" href="#%e4%bf%ae%e6%94%b9">#</a>
+</h2>
+<pre><code>        ID NAME                 SEX                     AGE BIRTHDAY
+----------- -------------------- -------------------- ------ -----------
+        1 张三                 男                       19 2095-12-21
+        2 小红                                          19 
+</code></pre>
+<p>student资料如上</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 1.更新小红性别为女
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">update</span> student <span style="color:#66d9ef">set</span> sex<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;女&#39;</span> <span style="color:#66d9ef">where</span> name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;小红&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 2.将所有人年龄更新为12
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">update</span> student <span style="color:#66d9ef">set</span> age<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>;
+</span></span></code></pre></div><h2 id="删除">
+  删除
+  <a class="anchor" href="#%e5%88%a0%e9%99%a4">#</a>
+</h2>
+<pre><code>        ID NAME                 SEX                     AGE BIRTHDAY
+----------- -------------------- -------------------- ------ -----------
+        1 张三                 男                       12 2095-12-21
+        2 小红                 女                       12 
+</code></pre>
+<p>student资料如上</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 1. 删除所有性别为男资料
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> student <span style="color:#66d9ef">where</span> sex<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;男&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 2. 删除所有资料
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> student;
+</span></span></code></pre></div><blockquote>
+<p><code>update</code>和<code>delete</code>使用到了<code>where</code>语句，我们在<code>select</code>中会详细介绍和使用。</p>
+</blockquote>
+</article>
  
       
 
@@ -324,6 +463,10 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -334,7 +477,17 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#dml--数据操作语言">DML&ndash;数据操作语言</a>
+      <ul>
+        <li><a href="#新增">新增</a></li>
+        <li><a href="#修改">修改</a></li>
+        <li><a href="#删除">删除</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
  

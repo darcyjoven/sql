@@ -64,7 +64,7 @@ alter table student add (
 
 > 如果要减少的字段有任意一笔不为空的资料，不允许删除字段，所以删除字段前，需要先清空字段资料
 
-<!-- TODO 连接到UPDATE -->
+[UPDATE语法](./first/DML/#修改)
 
 ```sql
 update student set parent = null;
@@ -80,7 +80,7 @@ alter table student drop column parent;
 
 ##### 通过删除字段
 
-<!-- TODO连接到UPDATE -->
+[UPDATE语法](./first/DML/#修改)
 
 1. 新建临时字段存储要修改列的值
 2. 将旧字段值设置为 null 后删除
@@ -104,6 +104,7 @@ alter table student drop column name2;
 ##### 通过重建表
 
 <!-- TODO链接到update select -->
+[UPDATE语法](./first/DML/#修改)
 
 1. 新建临时表存储现表资料
 2. 删除现表
@@ -216,10 +217,31 @@ create table student(
     class number(10)
     constraint student_fk
         foreign key (class)
-        references parent_table (id)
+        references class (id)
 );
+```
+2. 创建表后创建
+```sql
+create table class (
+    id  number(10)
+);
+create table student(
+    id number(10),
+    class number(10)
+);
+alter table student
+add constraint student_fk
+   foreign key (class)
+   references class (id);
 ```
 
 ### 删除
 
+```sql
+alter table  student drop constraint student_fk
+```
+
 ### 重建
+
+删除后重新添加即可
+

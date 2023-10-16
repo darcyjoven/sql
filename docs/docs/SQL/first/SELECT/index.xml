@@ -5,5 +5,60 @@
     <link>https://sql.darcyjoven.com/docs/SQL/first/SELECT/</link>
     <description>Recent content in 查询语句详解 on 一篇文章学会SQL</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://sql.darcyjoven.com/docs/SQL/first/SELECT/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>多表查询</title>
+      <link>https://sql.darcyjoven.com/docs/SQL/first/SELECT/join/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sql.darcyjoven.com/docs/SQL/first/SELECT/join/</guid>
+      <description>多表查询#资料准备
+-- table1 : create table user1(id number(3), user_name varchar(10), over varchar(10)); insert into user1 values(1, &amp;#39;tangseng&amp;#39;, &amp;#39;dtgdf&amp;#39;); insert into user1 values(2, &amp;#39;sunwukong&amp;#39;, &amp;#39;dzsf&amp;#39;); insert into user1 values(1, &amp;#39;zhubajie&amp;#39;, &amp;#39;jtsz&amp;#39;); insert into user1 values(1, &amp;#39;shaseng&amp;#39;, &amp;#39;jslh&amp;#39;); -- table2 : create table user2(id number(3), user_name varchar(10), over varchar(10)); insert into user2 values(1, &amp;#39;sunwukong&amp;#39;, &amp;#39;chengfo&amp;#39;); insert into user2 values(2, &amp;#39;niumowang&amp;#39;, &amp;#39;chengyao&amp;#39;); insert into user2 values(3, &amp;#39;jiaomowang&amp;#39;, &amp;#39;chengyao&amp;#39;); insert into user2 values(4, &amp;#39;pengmowang&amp;#39;, &amp;#39;chengyao&amp;#39;); INNER 内连接#select a.</description>
+    </item>
+    
+    <item>
+      <title>聚合查询</title>
+      <link>https://sql.darcyjoven.com/docs/SQL/first/SELECT/group/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sql.darcyjoven.com/docs/SQL/first/SELECT/group/</guid>
+      <description>聚合查询#</description>
+    </item>
+    
+    <item>
+      <title>嵌套查询</title>
+      <link>https://sql.darcyjoven.com/docs/SQL/first/SELECT/nest/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sql.darcyjoven.com/docs/SQL/first/SELECT/nest/</guid>
+      <description>嵌套查询#</description>
+    </item>
+    
+    <item>
+      <title>常用函数</title>
+      <link>https://sql.darcyjoven.com/docs/SQL/first/SELECT/function/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sql.darcyjoven.com/docs/SQL/first/SELECT/function/</guid>
+      <description>常用函数#</description>
+    </item>
+    
+    <item>
+      <title>视图</title>
+      <link>https://sql.darcyjoven.com/docs/SQL/first/SELECT/view/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sql.darcyjoven.com/docs/SQL/first/SELECT/view/</guid>
+      <description>视图#</description>
+    </item>
+    
+    <item>
+      <title>使用SELECT更新数据</title>
+      <link>https://sql.darcyjoven.com/docs/SQL/first/SELECT/dmlBySelect/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sql.darcyjoven.com/docs/SQL/first/SELECT/dmlBySelect/</guid>
+      <description>使用SELECT更新数据#</description>
+    </item>
+    
   </channel>
 </rss>

@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="聚合查询#">
+<meta name="description" content="聚合查询#聚合查询是一个比较特殊的查询，它不返回数据，而是返回一个聚合结果，比如求和、平均值、最大值、最小值等。
+数据准备:
+CREATE TABLE sales(  location varchar2(10),  product varchar2(10),  price number(3),  sold_at date );  INSERT INTO sales(location, product, price, sold_at) VALUES(&#39;HQ&#39;, &#39;Coffee&#39;, 2, sysdate); INSERT INTO sales(location, product, price, sold_at) VALUES(&#39;HQ&#39;, &#39;Coffee&#39;, 2, sysdate-1); INSERT INTO sales(location, product, price, sold_at) VALUES(&#39;Downtown&#39;, &#39;Bagel&#39;, 3, sysdate-3); INSERT INTO sales(location, product, price, sold_at) VALUES(&#39;Downtown&#39;, &#39;Coffee&#39;, 2, sysdate-2); INSERT INTO sales(location, product, price, sold_at) VALUES(&#39;HQ&#39;, &#39;Bagel&#39;, 2, sysdate-2); INSERT INTO sales(location, product, price, sold_at) VALUES(&#39;1st Street&#39;, &#39;Bagel&#39;, 3, sysdate-1); INSERT INTO sales(location, product, price, sold_at) VALUES(&#39;1st Street&#39;, &#39;Coffee&#39;, 2, sysdate-1); INSERT INTO sales(location, product, price, sold_at) VALUES(&#39;HQ&#39;, &#39;Bagel&#39;, 3, sysdate-5); GROUP-BY# GROUP BY位置紧跟WHERE条件之后">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="聚合查询" />
-<meta property="og:description" content="聚合查询#" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://sql.darcyjoven.com/docs/SQL/first/SELECT/group/" /><meta property="article:section" content="docs" />
-
-
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sql.darcyjoven.com/docs/SQL/first/SELECT/group/" />
 
 <title>聚合查询 | 一篇文章学会SQL</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.fa28aed5ad560cfe62d3313f73d52c8d3f0e4dd90765b347df26126aa3b16a42.js" integrity="sha256-&#43;iiu1a1WDP5i0zE/c9UsjT8OTdkHZbNH3yYSaqOxakI=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.e6496bc8982b6dcdec1bbe3142db23633272a38207625acc9bd770b1288f5dcd.js" integrity="sha256-5klryJgrbc3sG74xQtsjYzJyo4IHYlrMm9dwsSiPXc0=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/first/SELECT/group/index.xml" title="一篇文章学会SQL" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -185,6 +186,11 @@ https://github.com/alex-shpak/hugo-book
     <a href="/docs/SQL/first/SELECT/join/" class="">多表查询</a>
   
 
+          
+  <ul>
+    
+  </ul>
+
         </li>
       
     
@@ -198,6 +204,11 @@ https://github.com/alex-shpak/hugo-book
     <a href="/docs/SQL/first/SELECT/group/" class="active">聚合查询</a>
   
 
+          
+  <ul>
+    
+  </ul>
+
         </li>
       
     
@@ -210,6 +221,11 @@ https://github.com/alex-shpak/hugo-book
   
     <a href="/docs/SQL/first/SELECT/nest/" class="">嵌套查询</a>
   
+
+          
+  <ul>
+    
+  </ul>
 
         </li>
       
@@ -356,7 +372,15 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#聚合查询">聚合查询</a></li>
+    <li><a href="#聚合查询">聚合查询</a>
+      <ul>
+        <li><a href="#group-by">GROUP-BY</a></li>
+        <li><a href="#聚合函数">聚合函数</a></li>
+        <li><a href="#having">HAVING</a></li>
+        <li><a href="#隐式聚合">隐式聚合</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -373,6 +397,133 @@ https://github.com/alex-shpak/hugo-book
   聚合查询
   <a class="anchor" href="#%e8%81%9a%e5%90%88%e6%9f%a5%e8%af%a2">#</a>
 </h1>
+<p>聚合查询是一个比较特殊的查询，它不返回数据，而是返回一个聚合结果，比如求和、平均值、最大值、最小值等。</p>
+<p>数据准备:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> sales(
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">location</span> varchar2(<span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>  product varchar2(<span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>  price number(<span style="color:#ae81ff">3</span>),
+</span></span><span style="display:flex;"><span>  sold_at date
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> sales(<span style="color:#66d9ef">location</span>, product, price, sold_at) <span style="color:#66d9ef">VALUES</span>(<span style="color:#e6db74">&#39;HQ&#39;</span>, <span style="color:#e6db74">&#39;Coffee&#39;</span>, <span style="color:#ae81ff">2</span>, sysdate);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> sales(<span style="color:#66d9ef">location</span>, product, price, sold_at) <span style="color:#66d9ef">VALUES</span>(<span style="color:#e6db74">&#39;HQ&#39;</span>, <span style="color:#e6db74">&#39;Coffee&#39;</span>, <span style="color:#ae81ff">2</span>, sysdate<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> sales(<span style="color:#66d9ef">location</span>, product, price, sold_at) <span style="color:#66d9ef">VALUES</span>(<span style="color:#e6db74">&#39;Downtown&#39;</span>, <span style="color:#e6db74">&#39;Bagel&#39;</span>, <span style="color:#ae81ff">3</span>, sysdate<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> sales(<span style="color:#66d9ef">location</span>, product, price, sold_at) <span style="color:#66d9ef">VALUES</span>(<span style="color:#e6db74">&#39;Downtown&#39;</span>, <span style="color:#e6db74">&#39;Coffee&#39;</span>, <span style="color:#ae81ff">2</span>, sysdate<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> sales(<span style="color:#66d9ef">location</span>, product, price, sold_at) <span style="color:#66d9ef">VALUES</span>(<span style="color:#e6db74">&#39;HQ&#39;</span>, <span style="color:#e6db74">&#39;Bagel&#39;</span>, <span style="color:#ae81ff">2</span>, sysdate<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> sales(<span style="color:#66d9ef">location</span>, product, price, sold_at) <span style="color:#66d9ef">VALUES</span>(<span style="color:#e6db74">&#39;1st Street&#39;</span>, <span style="color:#e6db74">&#39;Bagel&#39;</span>, <span style="color:#ae81ff">3</span>, sysdate<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> sales(<span style="color:#66d9ef">location</span>, product, price, sold_at) <span style="color:#66d9ef">VALUES</span>(<span style="color:#e6db74">&#39;1st Street&#39;</span>, <span style="color:#e6db74">&#39;Coffee&#39;</span>, <span style="color:#ae81ff">2</span>, sysdate<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> sales(<span style="color:#66d9ef">location</span>, product, price, sold_at) <span style="color:#66d9ef">VALUES</span>(<span style="color:#e6db74">&#39;HQ&#39;</span>, <span style="color:#e6db74">&#39;Bagel&#39;</span>, <span style="color:#ae81ff">3</span>, sysdate<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>);
+</span></span></code></pre></div><h2 id="group-by">
+  GROUP-BY
+  <a class="anchor" href="#group-by">#</a>
+</h2>
+<blockquote>
+<p><code>GROUP BY</code>位置紧跟<code>WHERE</code>条件之后</p>
+</blockquote>
+<p>GROUP-BY 是聚合函数的核心，<code>SELECT</code>的查询结果会依据<code>GROUP BY</code>字段进行汇总。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">location</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> sales
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> <span style="color:#66d9ef">location</span>;
+</span></span></code></pre></div><pre><code>LOCATION
+----------
+HQ
+Downtown
+1st Street
+</code></pre>
+<p>试一下以下查询：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">location</span>,
+</span></span><span style="display:flex;"><span>  product
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> sales
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> <span style="color:#66d9ef">location</span>;
+</span></span></code></pre></div><h2 id="聚合函数">
+  聚合函数
+  <a class="anchor" href="#%e8%81%9a%e5%90%88%e5%87%bd%e6%95%b0">#</a>
+</h2>
+<ul>
+<li>sum() 合计</li>
+<li>count() 计数</li>
+<li>avg() 平均值</li>
+<li>max() 最大值</li>
+<li>min() 最小值</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">location</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> number_of_sales
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> sales
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> <span style="color:#66d9ef">location</span>;
+</span></span></code></pre></div><pre><code>LOCATION   NUMBER_OF_SALES
+---------- ---------------
+HQ                       4
+Downtown                 2
+1st Street               2
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">location</span><span style="color:#960050;background-color:#1e0010">，</span>
+</span></span><span style="display:flex;"><span>  sold_at,
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> sales_per_day
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> sales
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> <span style="color:#66d9ef">location</span>,sold_at
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#66d9ef">location</span>,sold_at;
+</span></span></code></pre></div><pre><code>LOCATION   SOLD_AT     SALES_PER_DAY
+---------- ----------- -------------
+1st Street 2023-10-15              2
+Downtown   2023-10-13              1
+Downtown   2023-10-14              1
+HQ         2023-10-11              1
+HQ         2023-10-14              1
+HQ         2023-10-15              1
+HQ         2023-10-16              1
+</code></pre>
+<h2 id="having">
+  HAVING
+  <a class="anchor" href="#having">#</a>
+</h2>
+<blockquote>
+<p>紧跟<code>GROUP BY</code></p>
+</blockquote>
+<p>在聚合的基础上进行筛选。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">location</span><span style="color:#960050;background-color:#1e0010">，</span>
+</span></span><span style="display:flex;"><span>  sold_at,
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> sales_per_day
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> sales
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> <span style="color:#66d9ef">location</span>,sold_at
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">HAVING</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#66d9ef">location</span>,sold_at;
+</span></span></code></pre></div><pre><code>LOCATION   SOLD_AT     SALES_PER_DAY
+---------- ----------- -------------
+Downtown   2023-10-13              1
+Downtown   2023-10-14              1
+HQ         2023-10-11              1
+HQ         2023-10-14              1
+HQ         2023-10-15              1
+HQ         2023-10-16              1
+</code></pre>
+<h2 id="隐式聚合">
+  隐式聚合
+  <a class="anchor" href="#%e9%9a%90%e5%bc%8f%e8%81%9a%e5%90%88">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#66d9ef">count</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">from</span> sales;
+</span></span></code></pre></div><pre><code>COUNT(*)
+----------
+        8
+</code></pre>
+<h2 id="总结">
+  总结
+  <a class="anchor" href="#%e6%80%bb%e7%bb%93">#</a>
+</h2>
+<p>SELECT 中关键字顺序：</p>
+<ol>
+<li>SELECT 必须</li>
+<li>FROM 必须</li>
+<li>JOIN</li>
+<li>WHERE</li>
+<li>GROUP BY</li>
+<li>HAVING</li>
+<li>ORDER BY</li>
+</ol>
 </article>
  
       
@@ -385,7 +536,7 @@ https://github.com/alex-shpak/hugo-book
 
 
   <div>
-    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/first/SELECT/group.md" target="_blank" rel="noopener">
+    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/first/SELECT/group/_index.md" target="_blank" rel="noopener">
       <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
       <span>编辑本页</span>
     </a>
@@ -421,7 +572,15 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#聚合查询">聚合查询</a></li>
+    <li><a href="#聚合查询">聚合查询</a>
+      <ul>
+        <li><a href="#group-by">GROUP-BY</a></li>
+        <li><a href="#聚合函数">聚合函数</a></li>
+        <li><a href="#having">HAVING</a></li>
+        <li><a href="#隐式聚合">隐式聚合</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 

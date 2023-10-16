@@ -139,6 +139,8 @@ where age between 1 and 10
 where age in (1,2,10)
 -- 年纪不是18，19
 where age not in (18,19)
+-- 可以是多个字段
+where (name,age) in (('darcy',19),('joven',10))
 ```
 
 ### 顺序--排序（order-by）

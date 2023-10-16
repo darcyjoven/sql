@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh" dir="ltr">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="常用函数#数据准备：">
+<meta name="description" content="嵌套查询#">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="常用函数" />
-<meta property="og:description" content="常用函数#数据准备：" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="嵌套查询" />
+<meta property="og:description" content="嵌套查询#" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://sql.darcyjoven.com/docs/SQL/first/SELECT/function/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="http://localhost:1313/docs/SQL/first/SELECT/next/nest/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2023-10-16T13:48:04+08:00" />
 
-<title>常用函数 | 一篇文章学会SQL</title>
+
+<title>嵌套查询 | 一篇文章学会SQL</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.e6496bc8982b6dcdec1bbe3142db23633272a38207625acc9bd770b1288f5dcd.js" integrity="sha256-5klryJgrbc3sG74xQtsjYzJyo4IHYlrMm9dwsSiPXc0=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.fa28aed5ad560cfe62d3313f73d52c8d3f0e4dd90765b347df26126aa3b16a42.js" integrity="sha256-&#43;iiu1a1WDP5i0zE/c9UsjT8OTdkHZbNH3yYSaqOxakI=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <!--
@@ -71,7 +71,7 @@ https://github.com/alex-shpak/hugo-book
     <ul>
       
       <li>
-        <a href="https://sql.darcyjoven.com/en/">
+        <a href="http://localhost:1313/en/">
           English
         </a>
       </li>
@@ -218,13 +218,8 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/SQL/first/SELECT/nest/" class="">嵌套查询</a>
+    <a href="/docs/SQL/first/SELECT/nest/nest/" class="">嵌套查询</a>
   
-
-          
-  <ul>
-    
-  </ul>
 
         </li>
       
@@ -236,7 +231,20 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/SQL/first/SELECT/function/" class="active">常用函数</a>
+    <a href="/docs/SQL/first/SELECT/next/nest/" class="active">嵌套查询</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/function/" class="">常用函数</a>
   
 
         </li>
@@ -355,7 +363,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>常用函数</strong>
+  <strong>嵌套查询</strong>
 
   <label for="toc-control">
     
@@ -371,7 +379,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#常用函数">常用函数</a></li>
+    <li><a href="#嵌套查询">嵌套查询</a></li>
   </ul>
 </nav>
 
@@ -384,12 +392,11 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="常用函数">
-  常用函数
-  <a class="anchor" href="#%e5%b8%b8%e7%94%a8%e5%87%bd%e6%95%b0">#</a>
+  <article class="markdown"><h1 id="嵌套查询">
+  嵌套查询
+  <a class="anchor" href="#%e5%b5%8c%e5%a5%97%e6%9f%a5%e8%af%a2">#</a>
 </h1>
-<p>数据准备：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"></code></pre></div></article>
+</article>
  
       
 
@@ -398,16 +405,10 @@ https://github.com/alex-shpak/hugo-book
   <div class="flex flex-wrap justify-between">
 
 
-  <div><a class="flex align-center" href="https://github.com/darcyjoven/sql/commit/e128d500c2251bdfdc055b467ef5aadd10cae6a2" title='最后修改者 darcy | 2023年10月16日' target="_blank" rel="noopener">
-      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
-      <span>2023年10月16日</span>
-    </a>
-  </div>
-
 
 
   <div>
-    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/first/SELECT/function.md" target="_blank" rel="noopener">
+    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/first/SELECT/next/nest.md" target="_blank" rel="noopener">
       <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
       <span>编辑本页</span>
     </a>
@@ -443,7 +444,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#常用函数">常用函数</a></li>
+    <li><a href="#嵌套查询">嵌套查询</a></li>
   </ul>
 </nav>
 

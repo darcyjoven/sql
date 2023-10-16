@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="嵌套查询#">
+<meta name="description" content="嵌套查询#资料准备：
+CREATE TABLE CUSTOMERS (  ID number(2),  NAME VARCHAR2(8),  AGE number(3),  ADDRESS VARCHAR2 (10),  SALARY number (10, 2) );  INSERT INTO CUSTOMERS VALUES (1, &#39;Ramesh&#39;, 32, &#39;Ahmedabad&#39;, 2000.00); INSERT INTO CUSTOMERS VALUES (2, &#39;Khilan&#39;, 25, &#39;Delhi&#39;, 1500.00); INSERT INTO CUSTOMERS VALUES (3, &#39;Kaushik&#39;, 23, &#39;Kota&#39;, 2000.00); INSERT INTO CUSTOMERS VALUES (4, &#39;Chaitali&#39;, 25, &#39;Mumbai&#39;, 6500.00); INSERT INTO CUSTOMERS VALUES (5, &#39;Hardik&#39;, 27, &#39;Bhopal&#39;, 8500.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="嵌套查询" />
-<meta property="og:description" content="嵌套查询#" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://sql.darcyjoven.com/docs/SQL/first/SELECT/nest/" /><meta property="article:section" content="docs" />
-
-
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sql.darcyjoven.com/docs/SQL/first/SELECT/nest/" />
 
 <title>嵌套查询 | 一篇文章学会SQL</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.fa28aed5ad560cfe62d3313f73d52c8d3f0e4dd90765b347df26126aa3b16a42.js" integrity="sha256-&#43;iiu1a1WDP5i0zE/c9UsjT8OTdkHZbNH3yYSaqOxakI=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.e6496bc8982b6dcdec1bbe3142db23633272a38207625acc9bd770b1288f5dcd.js" integrity="sha256-5klryJgrbc3sG74xQtsjYzJyo4IHYlrMm9dwsSiPXc0=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/first/SELECT/nest/index.xml" title="一篇文章学会SQL" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -185,6 +185,11 @@ https://github.com/alex-shpak/hugo-book
     <a href="/docs/SQL/first/SELECT/join/" class="">多表查询</a>
   
 
+          
+  <ul>
+    
+  </ul>
+
         </li>
       
     
@@ -198,6 +203,11 @@ https://github.com/alex-shpak/hugo-book
     <a href="/docs/SQL/first/SELECT/group/" class="">聚合查询</a>
   
 
+          
+  <ul>
+    
+  </ul>
+
         </li>
       
     
@@ -210,6 +220,11 @@ https://github.com/alex-shpak/hugo-book
   
     <a href="/docs/SQL/first/SELECT/nest/" class="active">嵌套查询</a>
   
+
+          
+  <ul>
+    
+  </ul>
 
         </li>
       
@@ -356,7 +371,20 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#嵌套查询">嵌套查询</a></li>
+    <li><a href="#嵌套查询">嵌套查询</a>
+      <ul>
+        <li><a href="#作为结果-select">作为结果-SELECT</a></li>
+        <li><a href="#作为条件-where">作为条件-WHERE</a>
+          <ul>
+            <li><a href="#in">in</a></li>
+            <li><a href="#exists">exists</a></li>
+            <li><a href="#作为字段">作为字段</a></li>
+          </ul>
+        </li>
+        <li><a href="#作为来源-from">作为来源-FROM</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -373,6 +401,134 @@ https://github.com/alex-shpak/hugo-book
   嵌套查询
   <a class="anchor" href="#%e5%b5%8c%e5%a5%97%e6%9f%a5%e8%af%a2">#</a>
 </h1>
+<p>资料准备：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> CUSTOMERS (
+</span></span><span style="display:flex;"><span>   ID number(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>   NAME VARCHAR2(<span style="color:#ae81ff">8</span>),
+</span></span><span style="display:flex;"><span>   AGE number(<span style="color:#ae81ff">3</span>),
+</span></span><span style="display:flex;"><span>   ADDRESS VARCHAR2 (<span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>   SALARY number (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> CUSTOMERS <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;Ramesh&#39;</span>, <span style="color:#ae81ff">32</span>, <span style="color:#e6db74">&#39;Ahmedabad&#39;</span>, <span style="color:#ae81ff">2000</span>.<span style="color:#ae81ff">00</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> CUSTOMERS <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;Khilan&#39;</span>, <span style="color:#ae81ff">25</span>, <span style="color:#e6db74">&#39;Delhi&#39;</span>, <span style="color:#ae81ff">1500</span>.<span style="color:#ae81ff">00</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> CUSTOMERS <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Kaushik&#39;</span>, <span style="color:#ae81ff">23</span>, <span style="color:#e6db74">&#39;Kota&#39;</span>, <span style="color:#ae81ff">2000</span>.<span style="color:#ae81ff">00</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> CUSTOMERS <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;Chaitali&#39;</span>, <span style="color:#ae81ff">25</span>, <span style="color:#e6db74">&#39;Mumbai&#39;</span>, <span style="color:#ae81ff">6500</span>.<span style="color:#ae81ff">00</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> CUSTOMERS <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#39;Hardik&#39;</span>, <span style="color:#ae81ff">27</span>, <span style="color:#e6db74">&#39;Bhopal&#39;</span>, <span style="color:#ae81ff">8500</span>.<span style="color:#ae81ff">00</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> CUSTOMERS <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#39;Komal&#39;</span>, <span style="color:#ae81ff">22</span>, <span style="color:#e6db74">&#39;Hyderabad&#39;</span>, <span style="color:#ae81ff">4500</span>.<span style="color:#ae81ff">00</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> CUSTOMERS <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">7</span>, <span style="color:#e6db74">&#39;Muffy&#39;</span>, <span style="color:#ae81ff">24</span>, <span style="color:#e6db74">&#39;Indore&#39;</span>, <span style="color:#ae81ff">10000</span>.<span style="color:#ae81ff">00</span>);
+</span></span></code></pre></div><h2 id="作为结果-select">
+  作为结果-SELECT
+  <a class="anchor" href="#%e4%bd%9c%e4%b8%ba%e7%bb%93%e6%9e%9c-select">#</a>
+</h2>
+<p>作为查询结果字段，这个时候要保证每次查询结果只有一个值。</p>
+<p>查询每个人的薪水和最高薪水的差异金额</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> a.name,a.salary,a.salary<span style="color:#f92672">-</span>(<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">max</span>(b.salary) <span style="color:#66d9ef">from</span> customers b) salary_diff
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> customers a;
+</span></span></code></pre></div><pre><code>NAME           SALARY SALARY_DIFF
+-------- ------------ -----------
+Ramesh        2000.00       -8000
+Khilan        1500.00       -8500
+Kaushik       2000.00       -8000
+Chaitali      6500.00       -3500
+Hardik        8500.00       -1500
+Komal         4500.00       -5500
+Muffy        10000.00           0
+</code></pre>
+<h2 id="作为条件-where">
+  作为条件-WHERE
+  <a class="anchor" href="#%e4%bd%9c%e4%b8%ba%e6%9d%a1%e4%bb%b6-where">#</a>
+</h2>
+<h3 id="in">
+  in
+  <a class="anchor" href="#in">#</a>
+</h3>
+<p>查询工资不是最高也不是最低的人</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> name,salary <span style="color:#66d9ef">from</span> customers
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> salary <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">in</span> (
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">max</span>(salary) <span style="color:#66d9ef">from</span> customers),
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">min</span>(salary) <span style="color:#66d9ef">from</span> customers)
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><pre><code>NAME           SALARY
+-------- ------------
+Ramesh        2000.00
+Kaushik       2000.00
+Chaitali      6500.00
+Hardik        8500.00
+Komal         4500.00
+</code></pre>
+<p><code>in</code>除了查询单个值，还可以作为范围条件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> name,salary <span style="color:#66d9ef">from</span> customers
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> salary <span style="color:#66d9ef">in</span> (<span style="color:#66d9ef">select</span> salary <span style="color:#66d9ef">from</span> customers <span style="color:#66d9ef">where</span> salary <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4000</span>);
+</span></span></code></pre></div><blockquote>
+<p>和<code>in</code> 一样，这里可以是多字段</p>
+</blockquote>
+<p>以上查询，查询薪水大于 4000 的人，当然有更简单的方式写，这里知识演示用法。</p>
+<pre><code>NAME           SALARY
+-------- ------------
+Chaitali      6500.00
+Hardik        8500.00
+Komal         4500.00
+Muffy        10000.00
+</code></pre>
+<h3 id="exists">
+  exists
+  <a class="anchor" href="#exists">#</a>
+</h3>
+<p><code>exists</code>和<code>in</code>可以互相转化，查询工资不是最高也不是最低的人改为<code>exists</code>写为：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> a.name,a.salary <span style="color:#66d9ef">from</span> customers a
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">exists</span> (<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">max</span>(b.salary) <span style="color:#66d9ef">from</span> customers b <span style="color:#66d9ef">having</span> <span style="color:#66d9ef">max</span>(b.salary)<span style="color:#f92672">=</span>a.salary)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">and</span> <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">exists</span> (<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">min</span>(b.salary) <span style="color:#66d9ef">from</span> customers b <span style="color:#66d9ef">having</span> <span style="color:#66d9ef">max</span>(b.salary)<span style="color:#f92672">=</span>a.salary);
+</span></span></code></pre></div><pre><code>NAME           SALARY
+-------- ------------
+Ramesh        2000.00
+Khilan        1500.00
+Kaushik       2000.00
+Chaitali      6500.00
+Hardik        8500.00
+Komal         4500.00
+</code></pre>
+<h3 id="作为字段">
+  作为字段
+  <a class="anchor" href="#%e4%bd%9c%e4%b8%ba%e5%ad%97%e6%ae%b5">#</a>
+</h3>
+<p>和<code>SELECT</code>一样，在<code>WHERE</code>查询条件中，也可以将子查询作为查询条件，这个时候要保证查询结果只有一个值。</p>
+<p>同样是查询工资不是最高也不是最低的人</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> name,salary <span style="color:#66d9ef">from</span> customers
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> salary <span style="color:#f92672">&lt;</span> (<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">max</span>(salary) <span style="color:#66d9ef">from</span> customers)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">and</span> salary <span style="color:#f92672">&gt;</span> (<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">min</span>(salary) <span style="color:#66d9ef">from</span> customers);
+</span></span></code></pre></div><pre><code>NAME           SALARY
+-------- ------------
+Ramesh        2000.00
+Kaushik       2000.00
+Chaitali      6500.00
+Hardik        8500.00
+Komal         4500.00
+</code></pre>
+<h2 id="作为来源-from">
+  作为来源-FROM
+  <a class="anchor" href="#%e4%bd%9c%e4%b8%ba%e6%9d%a5%e6%ba%90-from">#</a>
+</h2>
+<p>查询结果可以当作一个表使用，即可以作为<code>FROM</code>和<code>JOIN</code>的来源。这个时候要保证，列名不重复（因为表的列名不重复）。</p>
+<p>查询工资最高的人的姓名和地址</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> a.name,a.address,a.salary <span style="color:#66d9ef">from</span> customers a,(<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">max</span>(salary) salary <span style="color:#66d9ef">from</span> customers) b
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> a.salary<span style="color:#f92672">=</span>b.salary;
+</span></span></code></pre></div><pre><code>NAME     ADDRESS          SALARY
+-------- ---------- ------------
+Muffy    Indore         10000.00
+</code></pre>
+<h2 id="总结">
+  总结
+  <a class="anchor" href="#%e6%80%bb%e7%bb%93">#</a>
+</h2>
+<ul>
+<li>
+<p>查询结果为多笔时，可用在<code>FROM</code>、<code>JOIN</code>、<code>IN</code>、<code>EXISTS</code></p>
+</li>
+<li>
+<p>查询结果为单笔，可以当作字段、单个值使用</p>
+</li>
+</ul>
 </article>
  
       
@@ -385,7 +541,7 @@ https://github.com/alex-shpak/hugo-book
 
 
   <div>
-    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/first/SELECT/nest.md" target="_blank" rel="noopener">
+    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/first/SELECT/nest/_index.md" target="_blank" rel="noopener">
       <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
       <span>编辑本页</span>
     </a>
@@ -421,7 +577,20 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#嵌套查询">嵌套查询</a></li>
+    <li><a href="#嵌套查询">嵌套查询</a>
+      <ul>
+        <li><a href="#作为结果-select">作为结果-SELECT</a></li>
+        <li><a href="#作为条件-where">作为条件-WHERE</a>
+          <ul>
+            <li><a href="#in">in</a></li>
+            <li><a href="#exists">exists</a></li>
+            <li><a href="#作为字段">作为字段</a></li>
+          </ul>
+        </li>
+        <li><a href="#作为来源-from">作为来源-FROM</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 

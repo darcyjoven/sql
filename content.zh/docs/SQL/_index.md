@@ -37,6 +37,6 @@ title: "SQL--结构化查询语言"
 ### [嵌套（一般掌握，简单）](./first/SELECT/nest)
 ### [常用函数（一般掌握，中等）](./first/SELECT/function)
  
-### 建立视图（必须掌握，中等）
-### 修改视图（必须掌握，中等）
-### 删除视图（必须掌握，中等）
+### [视图（必须掌握，中等）](./first/SELECT/view)
+
+### [使用SELECT操作数据(一般掌握，中等)](./first/SELECT/dmlBySelect)

@@ -15,32 +15,5 @@
  基本语法 cloumn unique/distinct where and、or、not limit order by rownum 聚合 group by min、max count、avg、sum having like (*、？) in、between 子查询（查询嵌套） exists case 别名 join  inner join left/right (outer) join full (outer) join   union (all) insert into select    UPDATE 难度 ** 需掌握程度 ****</description>
     </item>
     
-    <item>
-      <title>常用函数</title>
-      <link>https://sql.darcyjoven.com/docs/SQL/first/SELECT/function/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://sql.darcyjoven.com/docs/SQL/first/SELECT/function/</guid>
-      <description>常用函数#数据准备：</description>
-    </item>
-    
-    <item>
-      <title>视图</title>
-      <link>https://sql.darcyjoven.com/docs/SQL/first/SELECT/view/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://sql.darcyjoven.com/docs/SQL/first/SELECT/view/</guid>
-      <description>视图#</description>
-    </item>
-    
-    <item>
-      <title>使用SELECT更新数据</title>
-      <link>https://sql.darcyjoven.com/docs/SQL/first/SELECT/dmlBySelect/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://sql.darcyjoven.com/docs/SQL/first/SELECT/dmlBySelect/</guid>
-      <description>使用SELECT更新数据#</description>
-    </item>
-    
   </channel>
 </rss>

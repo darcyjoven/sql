@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DDL&ndash;数据定义语言# 数据通过表存在数据库中 不区分大小写 表中规定每列的数据名称和数据类型 表结构影响后续数据的存储和检索  ORACLE 数据库结构# 库 TOPPROD 不能库之间只能通过网络通信 用户 FOREWIN 可以直接访问 表 TABLE 存储的基本单元 行 row 每个数据的最小表达方式  建立表#create student(  name varchar2(100),  age number(5),  score number(4,2),  birthday date ) 以上代码运行后创建了一个名称 student 的表，其中
+<meta name="description" content="DDL&ndash;数据定义语言# 数据通过表存在数据库中 不区分大小写 表中规定每列的数据名称和数据类型 表结构影响后续数据的存储和检索  建立表#create student(  name varchar2(100),  age number(5),  score number(4,2),  birthday date ) 以上代码运行后创建了一个名称 student 的表，其中
  studnet 表名，在有同一个用户中，不能重名，需要满足标识符要求 name 列名，在同一个表中，不能重名，需要满足标识符要求 varchar2(100) 数据类型  oracle 数据类型# date 日期 number() 数字类型 number(5) 为 5 位的小数 number(5,2) 位 5 位，有 2 位小数 blob/clob 二进制大数据 varchar2(100) 长度为 100 的字符串 timestamp 时间戳 （精确到 10 位的秒）  修改表#已有表的修改，请注意已有资料的情况">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="DDL--数据定义言" />
@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.a77e74e6ce5828eab65d5fed6faa75b1836813d30f465563221530289c6ad633.js" integrity="sha256-p3505s5YKOq2XV/tb6p1sYNoE9MPRlVjIhUwKJxq1jM=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.08885ddd963597fa96c0272d1d0e2970bb8bf4211833dee4cf36fe846d571fea.js" integrity="sha256-CIhd3ZY1l/qWwCctHQ4pcLuL9CEYM97kzzb&#43;hG1XH&#43;o=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/first/DDL/index.xml" title="一篇文章学会SQL" />
@@ -122,6 +122,24 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/frame/" class="">ORACLE数据库结构</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
     
       
         <li>
@@ -311,6 +329,24 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/environment/" class="">环境准备</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -388,7 +424,6 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#ddl--数据定义语言">DDL&ndash;数据定义语言</a>
       <ul>
-        <li><a href="#oracle-数据库结构">ORACLE 数据库结构</a></li>
         <li><a href="#建立表">建立表</a>
           <ul>
             <li><a href="#oracle-数据类型">oracle 数据类型</a></li>
@@ -439,16 +474,6 @@ https://github.com/alex-shpak/hugo-book
 <li>不区分大小写</li>
 <li>表中规定每列的数据名称和数据类型</li>
 <li>表结构影响后续数据的存储和检索</li>
-</ul>
-<h2 id="oracle-数据库结构">
-  ORACLE 数据库结构
-  <a class="anchor" href="#oracle-%e6%95%b0%e6%8d%ae%e5%ba%93%e7%bb%93%e6%9e%84">#</a>
-</h2>
-<ul>
-<li>库 TOPPROD 不能库之间只能通过网络通信</li>
-<li>用户 FOREWIN 可以直接访问</li>
-<li>表 TABLE 存储的基本单元</li>
-<li>行 row 每个数据的最小表达方式</li>
 </ul>
 <h2 id="建立表">
   建立表
@@ -502,7 +527,7 @@ https://github.com/alex-shpak/hugo-book
 <p>如果要减少的字段有任意一笔不为空的资料，不允许删除字段，所以删除字段前，需要先清空字段资料</p>
 </blockquote>
 <p>
-  <a href="./first/DML/#%e4%bf%ae%e6%94%b9">UPDATE语法</a></p>
+  <a href="/docs/SQL/first/DML/#%e4%bf%ae%e6%94%b9">UPDATE语法</a></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">update</span> student <span style="color:#66d9ef">set</span> parent <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> student <span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">column</span> parent;
 </span></span></code></pre></div><ol>
@@ -521,7 +546,7 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#%e9%80%9a%e8%bf%87%e5%88%a0%e9%99%a4%e5%ad%97%e6%ae%b5">#</a>
 </h5>
 <p>
-  <a href="./first/DML/#%e4%bf%ae%e6%94%b9">UPDATE语法</a></p>
+  <a href="/docs/SQL/first/DML/#%e4%bf%ae%e6%94%b9">UPDATE语法</a></p>
 <ol>
 <li>新建临时字段存储要修改列的值</li>
 <li>将旧字段值设置为 null 后删除</li>
@@ -546,7 +571,7 @@ https://github.com/alex-shpak/hugo-book
 </h5>
 <!-- TODO链接到update select -->
 <p>
-  <a href="./first/DML/#%e4%bf%ae%e6%94%b9">UPDATE语法</a></p>
+  <a href="/docs/SQL/first/DML/#%e4%bf%ae%e6%94%b9">UPDATE语法</a></p>
 <ol>
 <li>新建临时表存储现表资料</li>
 <li>删除现表</li>
@@ -744,7 +769,6 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#ddl--数据定义语言">DDL&ndash;数据定义语言</a>
       <ul>
-        <li><a href="#oracle-数据库结构">ORACLE 数据库结构</a></li>
         <li><a href="#建立表">建立表</a>
           <ul>
             <li><a href="#oracle-数据类型">oracle 数据类型</a></li>

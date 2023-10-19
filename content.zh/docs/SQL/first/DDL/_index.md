@@ -11,13 +11,6 @@ title: DDL--数据定义言
 - 表中规定每列的数据名称和数据类型
 - 表结构影响后续数据的存储和检索
 
-## ORACLE 数据库结构
-
-- 库 TOPPROD 不能库之间只能通过网络通信
-- 用户 FOREWIN 可以直接访问
-- 表 TABLE 存储的基本单元
-- 行 row 每个数据的最小表达方式
-
 ## 建立表
 
 ```sql
@@ -64,7 +57,7 @@ alter table student add (
 
 > 如果要减少的字段有任意一笔不为空的资料，不允许删除字段，所以删除字段前，需要先清空字段资料
 
-[UPDATE语法](./first/DML/#修改)
+[UPDATE语法](../DML/#修改)
 
 ```sql
 update student set parent = null;
@@ -80,7 +73,7 @@ alter table student drop column parent;
 
 ##### 通过删除字段
 
-[UPDATE语法](./first/DML/#修改)
+[UPDATE语法](../DML/#修改)
 
 1. 新建临时字段存储要修改列的值
 2. 将旧字段值设置为 null 后删除
@@ -104,7 +97,7 @@ alter table student drop column name2;
 ##### 通过重建表
 
 <!-- TODO链接到update select -->
-[UPDATE语法](./first/DML/#修改)
+[UPDATE语法](../DML/#修改)
 
 1. 新建临时表存储现表资料
 2. 删除现表

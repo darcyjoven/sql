@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ORACLE 数据库结构#物理结构-表空间#TABLEPACE&ndash;表空间#数据库存储数据的物理文件，所有数据库的表资料都储存在不同的表空间中。
+SQL&gt; SELECT TABLESPACE_NAME,  2 STATUS,  3 CONTENTS,  4 LOGGING  5 FROM DBA_TABLESPACES;  TABLESPACE_NAME STATUS CONTENTS LOGGING ------------------------------ --------- --------- --------- SYSTEM ONLINE PERMANENT LOGGING SYSAUX ONLINE PERMANENT LOGGING UNDOTBS1 ONLINE UNDO LOGGING TEMP ONLINE TEMPORARY NOLOGGING USERS ONLINE PERMANENT LOGGING DBS1 ONLINE PERMANENT LOGGING TEMPTABS ONLINE PERMANENT LOGGING RPTDBS1 ONLINE PERMANENT LOGGING BLOBDBS1 ONLINE PERMANENT LOGGING 表空间文件#表空间是表空间文件组成，表空间文件在建立时就定义了大小，当表空间文件满时，需要增加表空间文件。已建立表空间文件不能删除，移动，变小。">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="ORACLE数据库结构" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sql.darcyjoven.com/docs/SQL/first/frame/" />
+
+<title>ORACLE数据库结构 | 一篇文章学会SQL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/zh.search.min.08885ddd963597fa96c0272d1d0e2970bb8bf4211833dee4cf36fe846d571fea.js" integrity="sha256-CIhd3ZY1l/qWwCctHQ4pcLuL9CEYM97kzzb&#43;hG1XH&#43;o=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/first/frame/index.xml" title="一篇文章学会SQL" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>一篇文章学会SQL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+  
+
+
+
+  
+    
+  
+
+
+
+<ul class="book-languages">
+  <li>
+    <input type="checkbox" id="languages" class="toggle" />
+    <label for="languages" class="flex justify-between">
+      <a role="button" class="flex align-center">
+        <img src="/svg/translate.svg" class="book-icon" alt="Languages" />
+        简体中文
+      </a>
+    </label>
+
+    <ul>
+      
+      <li>
+        <a href="https://sql.darcyjoven.com/en/">
+          English
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/SQL/" class="">SQL--结构化查询语言</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>SQL--结构化查询语言</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/frame/" class="active">ORACLE数据库结构</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/DDL/" class="">DDL--数据定义言</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/DML/" class="">DML--数据操作语言</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9c4de171815630f1e7bf7d0b1c01b68e" class="toggle"  />
+    <label for="section-9c4de171815630f1e7bf7d0b1c01b68e" class="flex justify-between">
+      <a href="/docs/SQL/first/SELECT/" class="">查询语句详解</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/join/" class="">多表查询</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/group/" class="">聚合查询</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/nest/" class="">嵌套查询</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/function/" class="">常用函数</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/view/" class="">视图</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/dmlBySelect/" class="">使用SELECT更新数据</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>练习</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/environment/" class="">环境准备</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://github.com/darcyjoven/sql"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/"  target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>ORACLE数据库结构</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#oracle-数据库结构">ORACLE 数据库结构</a>
+      <ul>
+        <li><a href="#物理结构-表空间">物理结构-表空间</a>
+          <ul>
+            <li><a href="#tablepace--表空间">TABLEPACE&ndash;表空间</a></li>
+            <li><a href="#表空间文件">表空间文件</a></li>
+          </ul>
+        </li>
+        <li><a href="#逻辑结构">逻辑结构</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="oracle-数据库结构">
+  ORACLE 数据库结构
+  <a class="anchor" href="#oracle-%e6%95%b0%e6%8d%ae%e5%ba%93%e7%bb%93%e6%9e%84">#</a>
+</h1>
+<h2 id="物理结构-表空间">
+  物理结构-表空间
+  <a class="anchor" href="#%e7%89%a9%e7%90%86%e7%bb%93%e6%9e%84-%e8%a1%a8%e7%a9%ba%e9%97%b4">#</a>
+</h2>
+<h3 id="tablepace--表空间">
+  TABLEPACE&ndash;表空间
+  <a class="anchor" href="#tablepace--%e8%a1%a8%e7%a9%ba%e9%97%b4">#</a>
+</h3>
+<p>数据库存储数据的物理文件，所有数据库的表资料都储存在不同的表空间中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SQL</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SELECT</span> TABLESPACE_NAME,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">2</span>           STATUS,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">3</span>           CONTENTS,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">4</span>           LOGGING
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">5</span>      <span style="color:#66d9ef">FROM</span> DBA_TABLESPACES;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TABLESPACE_NAME                STATUS    CONTENTS  LOGGING
+</span></span><span style="display:flex;"><span><span style="color:#75715e">------------------------------ --------- --------- ---------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SYSTEM</span>                         ONLINE    PERMANENT LOGGING
+</span></span><span style="display:flex;"><span>SYSAUX                         ONLINE    PERMANENT LOGGING
+</span></span><span style="display:flex;"><span>UNDOTBS1                       ONLINE    UNDO      LOGGING
+</span></span><span style="display:flex;"><span>TEMP                           ONLINE    <span style="color:#66d9ef">TEMPORARY</span> NOLOGGING
+</span></span><span style="display:flex;"><span>USERS                          ONLINE    PERMANENT LOGGING
+</span></span><span style="display:flex;"><span>DBS1                           ONLINE    PERMANENT LOGGING
+</span></span><span style="display:flex;"><span>TEMPTABS                       ONLINE    PERMANENT LOGGING
+</span></span><span style="display:flex;"><span>RPTDBS1                        ONLINE    PERMANENT LOGGING
+</span></span><span style="display:flex;"><span>BLOBDBS1                       ONLINE    PERMANENT LOGGING
+</span></span></code></pre></div><h3 id="表空间文件">
+  表空间文件
+  <a class="anchor" href="#%e8%a1%a8%e7%a9%ba%e9%97%b4%e6%96%87%e4%bb%b6">#</a>
+</h3>
+<p>表空间是表空间文件组成，表空间文件在建立时就定义了大小，当表空间文件满时，需要增加表空间文件。已建立表空间文件不能删除，移动，变小。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SQL</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SELECT</span> TABLESPACE_NAME,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">2</span>           <span style="color:#e6db74">&#39;PERMANENT&#39;</span> TABLESPACE_KIND,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">3</span>           FILE_NAME,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">4</span>           STATUS,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">5</span>           AUTOEXTENSIBLE,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">6</span>           BYTES<span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span> CURR_BYTES_M,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">7</span>           ONLINE_STATUS
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">8</span>      <span style="color:#66d9ef">FROM</span> DBA_DATA_FILES <span style="color:#75715e">--永久表空间（含撤销表空间）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#ae81ff">9</span>     <span style="color:#66d9ef">UNION</span> <span style="color:#66d9ef">ALL</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">10</span>    <span style="color:#66d9ef">SELECT</span> TABLESPACE_NAME,
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">11</span>           <span style="color:#e6db74">&#39;TEMPORARY&#39;</span> TABLESPACE_KIND,
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">12</span>           FILE_NAME,
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">13</span>           STATUS,
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">14</span>           AUTOEXTENSIBLE,
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">15</span>           BYTES<span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1024</span> CURR_BYTES_M,
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">16</span>           <span style="color:#e6db74">&#39;ONLINE&#39;</span> ONLINE_STATUS
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">17</span>      <span style="color:#66d9ef">FROM</span> DBA_TEMP_FILES;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TABLESPACE_NAME                TABLESPACE_KIND FILE_NAME                                                                        STATUS    AUTOEXTENSIBLE CURR_BYTES_M ONLINE_STATUS
+</span></span><span style="display:flex;"><span><span style="color:#75715e">------------------------------ --------------- -------------------------------------------------------------------------------- --------- -------------- ------------ -------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SYSTEM</span>                         PERMANENT       <span style="color:#f92672">/</span>u2<span style="color:#f92672">/</span>oracle<span style="color:#f92672">/</span>oradata<span style="color:#f92672">/</span>topprod<span style="color:#f92672">/</span>system01.dbf                                          AVAILABLE YES                   <span style="color:#ae81ff">32750</span> <span style="color:#66d9ef">SYSTEM</span>
+</span></span><span style="display:flex;"><span>SYSAUX                         PERMANENT       <span style="color:#f92672">/</span>u2<span style="color:#f92672">/</span>oracle<span style="color:#f92672">/</span>oradata<span style="color:#f92672">/</span>topprod<span style="color:#f92672">/</span>sysaux01.dbf                                          AVAILABLE YES                    <span style="color:#ae81ff">1030</span> ONLINE
+</span></span><span style="display:flex;"><span>UNDOTBS1                       PERMANENT       <span style="color:#f92672">/</span>u2<span style="color:#f92672">/</span>oracle<span style="color:#f92672">/</span>oradata<span style="color:#f92672">/</span>topprod<span style="color:#f92672">/</span>undotbs01.dbf                                         AVAILABLE YES            <span style="color:#ae81ff">32767</span>.<span style="color:#ae81ff">984375</span> ONLINE
+</span></span><span style="display:flex;"><span>USERS                          PERMANENT       <span style="color:#f92672">/</span>u2<span style="color:#f92672">/</span>oracle<span style="color:#f92672">/</span>oradata<span style="color:#f92672">/</span>topprod<span style="color:#f92672">/</span>users01.dbf                                           AVAILABLE YES                 <span style="color:#ae81ff">6466</span>.<span style="color:#ae81ff">25</span> ONLINE
+</span></span><span style="display:flex;"><span>DBS1                           PERMANENT       <span style="color:#f92672">/</span>u2<span style="color:#f92672">/</span>oracle<span style="color:#f92672">/</span>oradata<span style="color:#f92672">/</span>topprod<span style="color:#f92672">/</span>dbs1<span style="color:#f92672">-</span><span style="color:#ae81ff">01</span>.dbf                                           AVAILABLE <span style="color:#66d9ef">NO</span>                     <span style="color:#ae81ff">2000</span> ONLINE
+</span></span></code></pre></div><blockquote>
+<p>表空间满了之后，需要增加表空间文件，任何表空间的操作都需要管理员账号登陆</p>
+</blockquote>
+<h2 id="逻辑结构">
+  逻辑结构
+  <a class="anchor" href="#%e9%80%bb%e8%be%91%e7%bb%93%e6%9e%84">#</a>
+</h2>
+<ol>
+<li>SID &ndash; 库</li>
+</ol>
+<p><code>库</code>为数据库的第一层结构，GP5.3中库名对应<code>区</code>。</p>
+<p>如<code>topprod</code>对应ERP正式区，<code>toptest</code>对应ERP测试区。</p>
+<p>不同库之间不能直接访问，需要通过网络访问。</p>
+<ol start="2">
+<li>user &ndash; 用户</li>
+</ol>
+<p>用户是库之下的第二层结构，在GP5.3中用户对应的是营运据点</p>
+<p>如<code>forewin</code>对应的就是<code>forewin</code>这个营运据点。</p>
+<p>不同用户之间资料，可以通过赋予权限访问。</p>
+<ol start="3">
+<li>第三次结构：table、view、index&hellip;</li>
+</ol>
+<p>存储数据的基本单元表&ndash;<code>table</code>，以及索引、视图、触发器等，都属于一个用户。
+也就是这些数据结构都建立并储存在用户下面。</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/first/frame/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>编辑本页</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(n){const e=window.getSelection(),t=document.createRange();t.selectNodeContents(n),e.removeAllRanges(),e.addRange(t)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#oracle-数据库结构">ORACLE 数据库结构</a>
+      <ul>
+        <li><a href="#物理结构-表空间">物理结构-表空间</a>
+          <ul>
+            <li><a href="#tablepace--表空间">TABLEPACE&ndash;表空间</a></li>
+            <li><a href="#表空间文件">表空间文件</a></li>
+          </ul>
+        </li>
+        <li><a href="#逻辑结构">逻辑结构</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

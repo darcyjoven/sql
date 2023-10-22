@@ -155,8 +155,7 @@ create table student (
     id  varchar2(100),
     age   number(5),
     score number(4,2),
-    birthday date,
-    constraint student_pk primary key(id)
+    birthday date
 );
 alter table student add constraint student_pk primary key (id);
 ```

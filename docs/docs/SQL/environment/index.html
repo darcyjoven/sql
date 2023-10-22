@@ -3,30 +3,32 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="环境准备#在服务器端可以运行所有功能，但是编辑和排错非常曲折，所以我们推荐使用本地工具连接ORACLE数据库。
+<meta name="description" content="环境准备#在服务器端可以运行所有功能，但是编辑和排错非常曲折，所以我们推荐使用本地工具连接ORACLE数据库。
 连接数据库，我们需要客户端与官方驱动：
-驱动# 官方驱动，选择对应版本驱动
- 驱动版本位数和客户端要保持一致，要么全都64位，要么全都32位。
-64位
-32位
-  位数：本次我们都选择64位
-  版本：本次我们选择12.2.0.1.0版本
-  GP5.3 对应的数据版本为11.2.0.3.0，我们可以选择此版本以上的驱动，高版本可以兼容低版本。
- 解压：将下载的压缩文件解压到一个文件夹中，后续要用到  本次我们解压位置是D:\app\oracle\instantclient_12_1
-客户端# 我们选择PLSQL Developer，还可以选择NVICAT、Toad for Oracle等
-  下载地址：Download   输入注册码：第一次打开不要登陆，会提示输入注册码，如果没有提示，通过这里打开   设置语言：设置语言为中文   设置驱动位置：设置之前解压的驱动文件夹位置   登陆：点击此按钮，或者重新打开软件，即可登陆   测试：新增SQL文件，输入内容，点击执行按钮，如果一下内容说明连接成功  SQL*Plus 客户端# SQL*Plus 客户端，是ORACLE官方提供的命令行客户端，可以使用命令行连接数据库">
+驱动#官方驱动，选择对应版本驱动
+驱动版本位数和客户端要保持一致，要么全都64位，要么全都32位。
+64位
+32位
+位数：本次我们都选择64位
+版本：本次我们选择12.2.0.1.0版本
+GP5.3 对应的数据版本为11.2.0.3.0，我们可以选择此版本以上的驱动，高版本可以兼容低版本。
+解压：将下载的压缩文件解压到一个文件夹中，后续要用到 本次我们解压位置是D:\app\oracle\instantclient_12_1
+客户端#我们选择PLSQL Developer，还可以选择NVICAT、Toad for Oracle等
+下载地址：Download 输入注册码：第一次打开不要登陆，会提示输入注册码，如果没有提示，通过这里打开 设置语言：设置语言为中文 设置驱动位置：设置之前解压的驱动文件夹位置 登陆：点击此按钮，或者重新打开软件，即可登陆 测试：新增SQL文件，输入内容，点击执行按钮，如果一下内容说明连接成功 SQL*Plus 客户端#SQL*Plus 客户端，是ORACLE官方提供的命令行客户端，可以使用命令行连接数据库
+在运维时，我们偶尔需要连接SQL*Plus客户端，所以要知道如何简单使用
+在数据库服务器和EPR服务器都安装好了SQL*Plus客户端，所以可以直接使用。
+连接命令 sqlplus [username]/[password]@[host]:[port]/[sid] sqlplus system/password@topprod sqlplus / as sysdba 退出命令 quit SQL*Plus中运行的SQL语句需要提交（commit;）并以;作为结束。">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="环境准备" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://sql.darcyjoven.com/docs/SQL/environment/" />
-
 <title>环境准备 | 一篇文章学会SQL</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.08885ddd963597fa96c0272d1d0e2970bb8bf4211833dee4cf36fe846d571fea.js" integrity="sha256-CIhd3ZY1l/qWwCctHQ4pcLuL9CEYM97kzzb&#43;hG1XH&#43;o=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.dd065e6a4e4bf4f9a61f772efa2307224ca133e2b133f81d72829dbeec0bbc0f.js" integrity="sha256-3QZeak5L9PmmH3cu&#43;iMHIkyhM&#43;KxM/gdcoKdvuwLvA8=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/environment/index.xml" title="一篇文章学会SQL" />
@@ -557,10 +559,16 @@ https://github.com/alex-shpak/hugo-book
   <div class="flex flex-wrap justify-between">
 
 
+  <div><a class="flex align-center" href="https://github.com/darcyjoven/sql/commit/e4253a2f020a91d080103f49bdbdd6c4eb3d7e42" title='最后修改者 darcy | 2023年10月19日' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>2023年10月19日</span>
+    </a>
+  </div>
+
 
 
   <div>
-    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/environment/_index.md" target="_blank" rel="noopener">
+    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content/docs/SQL/environment/_index.md" target="_blank" rel="noopener">
       <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
       <span>编辑本页</span>
     </a>
@@ -571,7 +579,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){function e(n){const e=window.getSelection(),t=document.createRange();t.selectNodeContents(n),e.removeAllRanges(),e.addRange(t)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  

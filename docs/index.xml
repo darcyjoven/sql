@@ -4,15 +4,16 @@
     <title>介绍 on 一篇文章学会SQL</title>
     <link>https://sql.darcyjoven.com/</link>
     <description>Recent content in 介绍 on 一篇文章学会SQL</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://sql.darcyjoven.com/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language><atom:link href="https://sql.darcyjoven.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SQL--结构化查询语言</title>
       <link>https://sql.darcyjoven.com/docs/SQL/hidden/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://sql.darcyjoven.com/docs/SQL/hidden/</guid>
-      <description>DDL 数据定义语句# CREATE TABLE ** 需掌握程度 *** ALTER TABLE ** 需掌握程度 *** DROP TABLE * 需掌握程度 ** CREATE INDEX *** 需掌握程度 ** DROP INDEX * 需掌握程度 **  DML 数据操纵语句#  SELECT 难度 ***** 需掌握程度 ****
- 基本语法 cloumn unique/distinct where and、or、not limit order by rownum 聚合 group by min、max count、avg、sum having like (*、？) in、between 子查询（查询嵌套） exists case 别名 join  inner join left/right (outer) join full (outer) join   union (all) insert into select    UPDATE 难度 ** 需掌握程度 ****</description>
+      <description>DDL 数据定义语句#CREATE TABLE ** 需掌握程度 *** ALTER TABLE ** 需掌握程度 *** DROP TABLE * 需掌握程度 ** CREATE INDEX *** 需掌握程度 ** DROP INDEX * 需掌握程度 ** DML 数据操纵语句#SELECT 难度 ***** 需掌握程度 ****
+基本语法 cloumn unique/distinct where and、or、not limit order by rownum 聚合 group by min、max count、avg、sum having like (*、？) in、between 子查询（查询嵌套） exists case 别名 join inner join left/right (outer) join full (outer) join union (all) insert into select UPDATE 难度 ** 需掌握程度 ****</description>
     </item>
     
   </channel>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="UNION#查询结果合并，会将union两侧的查询结果合并显示，是结果合并，而不是多表查询中的列和结果都合并
+select 1,2,3 from dual union select 2,3,4 from dual union select 1,2,3 from dual;  1 2 3---------- ---------- ----------1 2 32 3 4  dual 是一个只一列，且只有一行资料的ORACLE初始化时已经建立好的表，且资料不允许更新，修改，删除
+ 查询结果操作对查询语句有要求：
+ 列的数量和顺序必须一致 列的数据类型必须一致  查询后的结果，列名已第一个SQL字段名
+UNION还支持UNION ALL语法，此语法不会去掉重复资料
+select 1,2,3 from dual union select 2,3,4 from dual union all select 1,2,3 from dual;  1 2 3---------- ---------- ----------1 2 32 3 41 2 3 MINUS#MINUS 查询结果是两个查询结果的差集，即在第一个查询结果中存在，但是不在第二个查询结果中的数据">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="查询结果操作" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sql.darcyjoven.com/docs/SQL/first/SELECT/union/" />
+
+<title>查询结果操作 | 一篇文章学会SQL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/zh.search.min.9a455be3ff075d749616e6d14fa19cf74543a436615bcfab7456cef5216d96c3.js" integrity="sha256-mkVb4/8HXXSWFubRT6Gc90VDpDZhW8&#43;rdFbO9SFtlsM=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/first/SELECT/union/index.xml" title="一篇文章学会SQL" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>一篇文章学会SQL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+  
+
+
+
+  
+    
+  
+
+
+
+<ul class="book-languages">
+  <li>
+    <input type="checkbox" id="languages" class="toggle" />
+    <label for="languages" class="flex justify-between">
+      <a role="button" class="flex align-center">
+        <img src="/svg/translate.svg" class="book-icon" alt="Languages" />
+        简体中文
+      </a>
+    </label>
+
+    <ul>
+      
+      <li>
+        <a href="https://sql.darcyjoven.com/en/">
+          English
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/SQL/" class="">SQL--结构化查询语言</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>SQL--结构化查询语言</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/frame/" class="">ORACLE数据库结构</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/DDL/" class="">DDL--数据定义言</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/DML/" class="">DML--数据操作语言</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9c4de171815630f1e7bf7d0b1c01b68e" class="toggle" checked />
+    <label for="section-9c4de171815630f1e7bf7d0b1c01b68e" class="flex justify-between">
+      <a href="/docs/SQL/first/SELECT/" class="">查询语句详解</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/join/" class="">多表查询</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/group/" class="">聚合查询</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/nest/" class="">嵌套查询</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/function/" class="">常用函数</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/union/" class="active">查询结果操作</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/view/" class="">视图</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/dmlBySelect/" class="">使用SELECT更新数据</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <span>练习</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/environment/" class="">环境准备</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://github.com/darcyjoven/sql"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/"  target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>查询结果操作</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#union">UNION</a></li>
+        <li><a href="#minus">MINUS</a></li>
+        <li><a href="#intersect">INTERSECT</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h2 id="union">
+  UNION
+  <a class="anchor" href="#union">#</a>
+</h2>
+<p>查询结果合并，会将union两侧的查询结果合并显示，是结果合并，而不是多表查询中的列和结果都合并</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> <span style="color:#66d9ef">from</span> dual
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">union</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span> <span style="color:#66d9ef">from</span> dual
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">union</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> <span style="color:#66d9ef">from</span> dual;
+</span></span></code></pre></div><pre><code>         1          2          3
+---------- ---------- ----------
+        1          2          3
+        2          3          4
+</code></pre>
+<blockquote>
+<p>dual 是一个只一列，且只有一行资料的ORACLE初始化时已经建立好的表，且资料不允许更新，修改，删除</p>
+</blockquote>
+<p>查询结果操作对查询语句有要求：</p>
+<ul>
+<li>列的数量和顺序必须一致</li>
+<li>列的数据类型必须一致</li>
+</ul>
+<p>查询后的结果，列名已第一个SQL字段名</p>
+<p>UNION还支持<code>UNION ALL</code>语法，此语法不会去掉重复资料</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> <span style="color:#66d9ef">from</span> dual
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">union</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span> <span style="color:#66d9ef">from</span> dual
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">union</span> <span style="color:#66d9ef">all</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> <span style="color:#66d9ef">from</span> dual;
+</span></span></code></pre></div><pre><code>         1          2          3
+---------- ---------- ----------
+        1          2          3
+        2          3          4
+        1          2          3
+</code></pre>
+<h2 id="minus">
+  <del>MINUS</del>
+  <a class="anchor" href="#minus">#</a>
+</h2>
+<p>MINUS 查询结果是两个查询结果的差集，即在第一个查询结果中存在，但是不在第二个查询结果中的数据</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>(<span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> <span style="color:#66d9ef">from</span> dual
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">union</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span> <span style="color:#66d9ef">from</span> dual)
+</span></span><span style="display:flex;"><span>minus
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> <span style="color:#66d9ef">from</span> dual;
+</span></span></code></pre></div><pre><code>         1          2          3
+---------- ---------- ----------
+        2          3          4
+</code></pre>
+<h2 id="intersect">
+  <del>INTERSECT</del>
+  <a class="anchor" href="#intersect">#</a>
+</h2>
+<p>INTERSECT 查询结果是两个查询结果的交集，即在两个查询结果中都存在的数据</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>(<span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> <span style="color:#66d9ef">from</span> dual
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">union</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span> <span style="color:#66d9ef">from</span> dual)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INTERSECT</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> <span style="color:#66d9ef">from</span> dual;
+</span></span></code></pre></div><pre><code>        1          2          3
+---------- ---------- ----------
+        1          2          3</code></pre>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/first/SELECT/union/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>编辑本页</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(n){const e=window.getSelection(),t=document.createRange();t.selectNodeContents(n),e.removeAllRanges(),e.addRange(t)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#union">UNION</a></li>
+        <li><a href="#minus">MINUS</a></li>
+        <li><a href="#intersect">INTERSECT</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

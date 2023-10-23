@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="SELECT&ndash;查询语句详解#查询语句组成#结果&ndash;字段（select）#查询语句的最前面
-select 字段1,字段2,字段3,&#39;6班&#39; 班级 * 匹配所有字段: select * select student.*,class.* 字面常量： 数值和字符串都可以以字面常量作为字段结果
-别名：
-select id,name 姓名,age as 年纪 查询结果中会以别名显示
-字段运算: select id,&#39;姓名&#39;||name,age&#43;2 查询字段可以进行字段运算，字符串拼接为||拼接，数学运算符号&#43;-*/都可以使用
-判断语句： SQL 中判断语句比较特殊，它只能返回一个值，且每个分支返回值必须一致。 -- 从一个变量的值判断 select case sex when &#39;男&#39; then &#39;我是男生&#39; when &#39;女&#39; then &#39;我是女生&#39; else &#39;我是人妖&#39; end as 性别 -- 从条件表达式判断 select case when age &lt; 8 then &#39;小学生&#39; when age &lt; 16 then &#39;初中生&#39; when age &lt; 24 &#39;大学生&#39; else &#39;老人&#39; end as 年纪 来源&ndash;表（from）#必须在字段之后">
+<meta name="description" content="SELECT&ndash;查询语句详解#查询语句组成#结果&ndash;字段（select）# 查询语句的最前面
+ select 字段1,字段2,字段3,&#39;6班&#39; 班级  * 匹配所有字段:  select * select student.*,class.*   字面常量： 数值和字符串都可以以字面常量作为字段结果
+  别名：
+  select id,name 姓名,age as 年纪 查询结果中会以别名显示
+ 字段运算:  select id,&#39;姓名&#39;||name,age&#43;2 查询字段可以进行字段运算，字符串拼接为||拼接，数学运算符号&#43;-*/都可以使用
+ 判断语句： SQL 中判断语句比较特殊，它只能返回一个值，且每个分支返回值必须一致。  -- 从一个变量的值判断 select case sex when &#39;男&#39; then &#39;我是男生&#39; when &#39;女&#39; then &#39;我是女生&#39; else &#39;我是人妖&#39; end as 性别 -- 从条件表达式判断 select case when age &lt; 8 then &#39;小学生&#39; when age &lt; 16 then &#39;初中生&#39; when age &lt; 24 &#39;大学生&#39; else &#39;老人&#39; end as 年纪 来源&ndash;表（from）# 必须在字段之后">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="查询语句详解" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://sql.darcyjoven.com/docs/SQL/first/SELECT/" />
+
 <title>查询语句详解 | 一篇文章学会SQL</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.dd065e6a4e4bf4f9a61f772efa2307224ca133e2b133f81d72829dbeec0bbc0f.js" integrity="sha256-3QZeak5L9PmmH3cu&#43;iMHIkyhM&#43;KxM/gdcoKdvuwLvA8=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.9a455be3ff075d749616e6d14fa19cf74543a436615bcfab7456cef5216d96c3.js" integrity="sha256-mkVb4/8HXXSWFubRT6Gc90VDpDZhW8&#43;rdFbO9SFtlsM=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/first/SELECT/index.xml" title="一篇文章学会SQL" />
@@ -258,6 +259,24 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/SQL/first/SELECT/function/" class="">常用函数</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/union/" class="">查询结果操作</a>
   
 
           
@@ -614,7 +633,7 @@ in 判断一个值是否在某个范围之内，这个不是连续的，而是�
 
 
   <div>
-    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content/docs/SQL/first/SELECT/_index.md" target="_blank" rel="noopener">
+    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/first/SELECT/_index.md" target="_blank" rel="noopener">
       <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
       <span>编辑本页</span>
     </a>
@@ -625,7 +644,7 @@ in 判断一个值是否在某个范围之内，这个不是连续的，而是�
 
 
 
-  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(n){const e=window.getSelection(),t=document.createRange();t.selectNodeContents(n),e.removeAllRanges(),e.addRange(t)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  

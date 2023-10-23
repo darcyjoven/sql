@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ORACLE 数据库结构#物理结构-表空间#TABLESPACE&ndash;表空间#数据库存储数据的物理文件，所有数据库的表资料都储存在不同的表空间中。
-SQL&gt; SELECT TABLESPACE_NAME, 2 STATUS, 3 CONTENTS, 4 LOGGING 5 FROM DBA_TABLESPACES; TABLESPACE_NAME STATUS CONTENTS LOGGING ------------------------------ --------- --------- --------- SYSTEM ONLINE PERMANENT LOGGING SYSAUX ONLINE PERMANENT LOGGING UNDOTBS1 ONLINE UNDO LOGGING TEMP ONLINE TEMPORARY NOLOGGING USERS ONLINE PERMANENT LOGGING DBS1 ONLINE PERMANENT LOGGING TEMPTABS ONLINE PERMANENT LOGGING RPTDBS1 ONLINE PERMANENT LOGGING BLOBDBS1 ONLINE PERMANENT LOGGING 表空间文件#表空间是表空间文件组成，表空间文件在建立时就定义了大小，当表空间文件满时，需要增加表空间文件。已建立表空间文件不能删除，移动，变小。
-SQL&gt; SELECT TABLESPACE_NAME, 2 &#39;PERMANENT&#39; TABLESPACE_KIND, 3 FILE_NAME, 4 STATUS, 5 AUTOEXTENSIBLE, 6 BYTES/1024/1024 CURR_BYTES_M, 7 ONLINE_STATUS 8 FROM DBA_DATA_FILES --永久表空间（含撤销表空间） 9 UNION ALL 10 SELECT TABLESPACE_NAME, 11 &#39;TEMPORARY&#39; TABLESPACE_KIND, 12 FILE_NAME, 13 STATUS, 14 AUTOEXTENSIBLE, 15 BYTES/1024/1024 CURR_BYTES_M, 16 &#39;ONLINE&#39; ONLINE_STATUS 17 FROM DBA_TEMP_FILES; TABLESPACE_NAME TABLESPACE_KIND FILE_NAME STATUS AUTOEXTENSIBLE CURR_BYTES_M ONLINE_STATUS ------------------------------ --------------- -------------------------------------------------------------------------------- --------- -------------- ------------ ------------- SYSTEM PERMANENT /u2/oracle/oradata/topprod/system01.">
+<meta name="description" content="ORACLE 数据库结构#物理结构-表空间#TABLESPACE&ndash;表空间#数据库存储数据的物理文件，所有数据库的表资料都储存在不同的表空间中。
+SQL&gt; SELECT TABLESPACE_NAME,  2 STATUS,  3 CONTENTS,  4 LOGGING  5 FROM DBA_TABLESPACES;  TABLESPACE_NAME STATUS CONTENTS LOGGING ------------------------------ --------- --------- --------- SYSTEM ONLINE PERMANENT LOGGING SYSAUX ONLINE PERMANENT LOGGING UNDOTBS1 ONLINE UNDO LOGGING TEMP ONLINE TEMPORARY NOLOGGING USERS ONLINE PERMANENT LOGGING DBS1 ONLINE PERMANENT LOGGING TEMPTABS ONLINE PERMANENT LOGGING RPTDBS1 ONLINE PERMANENT LOGGING BLOBDBS1 ONLINE PERMANENT LOGGING 表空间文件#表空间是表空间文件组成，表空间文件在建立时就定义了大小，当表空间文件满时，需要增加表空间文件。已建立表空间文件不能删除，移动，变小。">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="ORACLE数据库结构" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://sql.darcyjoven.com/docs/SQL/first/frame/" />
+
 <title>ORACLE数据库结构 | 一篇文章学会SQL</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.dd065e6a4e4bf4f9a61f772efa2307224ca133e2b133f81d72829dbeec0bbc0f.js" integrity="sha256-3QZeak5L9PmmH3cu&#43;iMHIkyhM&#43;KxM/gdcoKdvuwLvA8=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.9a455be3ff075d749616e6d14fa19cf74543a436615bcfab7456cef5216d96c3.js" integrity="sha256-mkVb4/8HXXSWFubRT6Gc90VDpDZhW8&#43;rdFbO9SFtlsM=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/first/frame/index.xml" title="一篇文章学会SQL" />
@@ -255,6 +255,24 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/SQL/first/SELECT/function/" class="">常用函数</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SQL/first/SELECT/union/" class="">查询结果操作</a>
   
 
           
@@ -538,16 +556,16 @@ https://github.com/alex-shpak/hugo-book
   <div class="flex flex-wrap justify-between">
 
 
-  <div><a class="flex align-center" href="https://github.com/darcyjoven/sql/commit/e4253a2f020a91d080103f49bdbdd6c4eb3d7e42" title='最后修改者 darcy | 2023年10月19日' target="_blank" rel="noopener">
+  <div><a class="flex align-center" href="https://github.com/darcyjoven/sql/commit/540210e5759f51590a3ed24ac81b9313d8e65e7a" title='最后修改者 darcy | 2023年10月22日' target="_blank" rel="noopener">
       <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
-      <span>2023年10月19日</span>
+      <span>2023年10月22日</span>
     </a>
   </div>
 
 
 
   <div>
-    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content/docs/SQL/first/frame/_index.md" target="_blank" rel="noopener">
+    <a class="flex align-center" href="https://github.com/darcyjoven/sql/edit/main/content.zh/docs/SQL/first/frame/_index.md" target="_blank" rel="noopener">
       <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
       <span>编辑本页</span>
     </a>
@@ -558,7 +576,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(n){const e=window.getSelection(),t=document.createRange();t.selectNodeContents(n),e.removeAllRanges(),e.addRange(t)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  

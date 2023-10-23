@@ -20,7 +20,7 @@ select 1,2,3 from dual union select 2,3,4 from dual union all select 1,2,3 from 
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.91f3f042b8fe421114584613f3c1c5454d591623eaa51759edd4f8c804095ea8.css" integrity="sha256-kfPwQrj&#43;QhEUWEYT88HFRU1ZFiPqpRdZ7dT4yAQJXqg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/zh.search.min.9a455be3ff075d749616e6d14fa19cf74543a436615bcfab7456cef5216d96c3.js" integrity="sha256-mkVb4/8HXXSWFubRT6Gc90VDpDZhW8&#43;rdFbO9SFtlsM=" crossorigin="anonymous"></script>
+  <script defer src="/zh.search.min.8c5b8d14b493f43d4fe4ccf079e024df271790940a7ff04ecb8d6b39996ff4e5.js" integrity="sha256-jFuNFLST9D1P5MzweeAk3ycXkJQKf/BOy41rOZlv9OU=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://sql.darcyjoven.com/docs/SQL/first/SELECT/union/index.xml" title="一篇文章学会SQL" />
@@ -449,6 +449,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#union">UNION</a></li>
         <li><a href="#minus">MINUS</a></li>
         <li><a href="#intersect">INTERSECT</a></li>
+        <li><a href="#rownum-字段">rownum 字段</a></li>
       </ul>
     </li>
   </ul>
@@ -525,8 +526,87 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> <span style="color:#66d9ef">from</span> dual;
 </span></span></code></pre></div><pre><code>        1          2          3
 ---------- ---------- ----------
-        1          2          3</code></pre>
-</article>
+        1          2          3
+</code></pre>
+<h2 id="rownum-字段">
+  rownum 字段
+  <a class="anchor" href="#rownum-%e5%ad%97%e6%ae%b5">#</a>
+</h2>
+<ol>
+<li>rownum：伪列。顾名思义：是数据库自己创建出来的字段。</li>
+<li>rownum是个伪列，伴随着结果集的过程而生成的字段。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> id,user_name,over,rownum
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> user1;
+</span></span></code></pre></div><pre><code>    ID USER_NAME  OVER           ROWNUM
+    ---- ---------- ---------- ----------
+    1 tangseng   dtgdf               1
+    2 sunwukong  dzsf                2
+    1 zhubajie   jtsz                3
+    1 shaseng    jslh                4
+</code></pre>
+<ul>
+<li>对查询结果进行依次编号</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>  ID USER_NAME  OVER           ROWNUM
+</span></span><span style="display:flex;"><span><span style="color:#75715e">---- ---------- ---------- ----------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   <span style="color:#ae81ff">1</span> tangseng   dtgdf               <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">1</span> shaseng    jslh                <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">1</span> zhubajie   jtsz                <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">2</span> sunwukong  dzsf                <span style="color:#ae81ff">2</span>
+</span></span></code></pre></div><ul>
+<li>rownum 编号运行在order by之前，所以编号会导致rownum也重新排序</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> id,user_name,over,rownum <span style="color:#66d9ef">from</span> (
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> id,user_name,over
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> user1 <span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> id);
+</span></span></code></pre></div><pre><code>    ID USER_NAME  OVER           ROWNUM
+    ---- ---------- ---------- ----------
+    1 tangseng   dtgdf               1
+    1 shaseng    jslh                2
+    1 zhubajie   jtsz                3
+    2 sunwukong  dzsf                4
+</code></pre>
+<ul>
+<li>若像依据ID对rownum编号，需要使用嵌套查询，先排序，将排序号的资料重新增加rownum</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> id,user_name,over,rownum2,rownum <span style="color:#66d9ef">from</span> (
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> id,user_name,over,rownum rownum2
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> user1 <span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> id);
+</span></span></code></pre></div><pre><code>    ID USER_NAME  OVER          ROWNUM2     ROWNUM
+    ---- ---------- ---------- ---------- ----------
+    1 tangseng   dtgdf               1          1
+    1 shaseng    jslh                4          2
+    1 zhubajie   jtsz                3          3
+    2 sunwukong  dzsf                2          4
+</code></pre>
+<ul>
+<li>注意子查询中的rownum使用后编号就依据固定下来了，其它查询使用子查询中的rownum，不会随着排序而改变</li>
+</ul>
+<blockquote>
+<p>rownum经常用来进行筛选只要查询结果的某些列</p>
+</blockquote>
+<ul>
+<li>查询结果的前3笔</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> user1
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> rownum <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">3</span>;
+</span></span></code></pre></div><ul>
+<li>查询结果的第2，3笔 &ndash; 这里必须使用嵌套查询，先将rownum固定下来，然后才能选取第2笔和第3笔</li>
+</ul>
+<p>错误写法</p>
+<p><del><code>select * from user1 where rownum between 2 and 3;</code></del></p>
+<p>正确写法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> (
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> user1.<span style="color:#f92672">*</span>,rownum rownum2 <span style="color:#66d9ef">from</span> user1)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> rownum2 <span style="color:#66d9ef">between</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">and</span> <span style="color:#ae81ff">3</span>;
+</span></span></code></pre></div><ul>
+<li>查询第2笔之后的笔数</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> (
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> user1.<span style="color:#f92672">*</span>,rownum rownum2 <span style="color:#66d9ef">from</span> user1)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> rownum2 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>;
+</span></span></code></pre></div></article>
  
       
 
@@ -534,6 +614,12 @@ https://github.com/alex-shpak/hugo-book
         
   <div class="flex flex-wrap justify-between">
 
+
+  <div><a class="flex align-center" href="https://github.com/darcyjoven/sql/commit/ea42d2517b26f46e57ae3e2024892d11f234babd" title='最后修改者 darcy | 2023年10月23日' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>2023年10月23日</span>
+    </a>
+  </div>
 
 
 
@@ -579,6 +665,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#union">UNION</a></li>
         <li><a href="#minus">MINUS</a></li>
         <li><a href="#intersect">INTERSECT</a></li>
+        <li><a href="#rownum-字段">rownum 字段</a></li>
       </ul>
     </li>
   </ul>
